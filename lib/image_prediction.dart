@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:dental_ui/feature/dental_ai/dental_ai.dart';
 import 'package:flutter/material.dart';
+import 'features/dental_ai/dental_ai.dart';
 
 class ImagePrediction extends StatefulWidget {
   const ImagePrediction({super.key, required this.imagePath});
