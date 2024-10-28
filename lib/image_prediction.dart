@@ -1,7 +1,6 @@
 import 'dart:io';
-import 'package:dental_ui/dental_ai/dental_ai.dart';
+import 'package:dental_ui/feature/dental_ai/dental_ai.dart';
 import 'package:flutter/material.dart';
-
 
 class ImagePrediction extends StatefulWidget {
   const ImagePrediction({super.key, required this.imagePath});
@@ -24,6 +23,8 @@ class _ImagePredictionState extends State<ImagePrediction> {
 
   void initModel() async {
     file = File(widget.imagePath);
+
+    //TODO : Add state management code
     final dentalAi = DentalAi(file: file);
     modelResult = await dentalAi.classifyImage();
     setState(() {});
