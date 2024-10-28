@@ -38,9 +38,12 @@ class _ImagePredictionState extends State<ImagePrediction> {
             height: MediaQuery.sizeOf(context).height * 0.5,
             child: Image.file(file),
           ),
-          Text(widget.imagePath),
           Text(
             modelResult,
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            widget.imagePath,
             textAlign: TextAlign.center,
           ),
         ],
@@ -53,7 +56,7 @@ class _ImagePredictionState extends State<ImagePrediction> {
     Uint8List imageData = await imageFile.readAsBytes();
     img.Image? image = img.decodeImage(imageData);
     img.Image resizedImage =
-    img.copyResize(image!, width: inputSize, height: inputSize);
+        img.copyResize(image!, width: inputSize, height: inputSize);
     var input = Float32List(inputSize * inputSize * 3);
     var pixelIndex = 0;
 

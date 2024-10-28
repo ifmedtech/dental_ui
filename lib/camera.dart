@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:dental_ui/image_prediction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uvc_camera/flutter_uvc_camera.dart';
@@ -13,15 +12,21 @@ class CameraTest extends StatefulWidget {
 
 class _CameraTestState extends State<CameraTest> {
   int selectIndex = 0;
-  String? img;
   UVCCameraController cameraController = UVCCameraController();
 
   @override
   void initState() {
     super.initState();
+    // cameraController.initializeCamera();
     cameraController.msgCallback = (state) {
       showCustomToast(state);
     };
+  }
+
+  @override
+  void dispose() {
+    cameraController.dispose();
+    super.dispose();
   }
 
   void showCustomToast(String message) {
@@ -45,32 +50,6 @@ class _CameraTestState extends State<CameraTest> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                TextButton(
-                  child: const Text('close'),
-                  onPressed: () {
-                    cameraController.closeCamera();
-                    setState(() {});
-                  },
-                ),
-                TextButton(
-                  child: const Text('open'),
-                  onPressed: () {
-                    cameraController.openUVCCamera();
-                    cameraController.updateResolution(
-                      PreviewSize(
-                        width: MediaQuery.sizeOf(context).width.toInt(),
-                        height:
-                            (MediaQuery.sizeOf(context).height * 0.6).toInt(),
-                      ),
-                    );
-                    setState(() {});
-                  },
-                ),
-              ],
-            ),
             SizedBox(
               child: UVCCameraView(
                 cameraController: cameraController,
@@ -88,12 +67,6 @@ class _CameraTestState extends State<CameraTest> {
               onPressed: () => picturePicker(),
               child: const Text('Pick Image'),
             ),
-            if (img != null)
-              SizedBox(
-                height: 100,
-                width: 100,
-                child: Image.file(File(img!)),
-              ),
             const SizedBox(height: 100)
           ],
         ),
@@ -112,16 +85,6 @@ class _CameraTestState extends State<CameraTest> {
                     imagePath: path,
                   )))
           .then((value) => {cameraController.openUVCCamera()});
-      img = path;
-      setState(() {});
-    }
-  }
-
-  captureVideo(int i) async {
-    String? path = await cameraController.captureVideo();
-    if (path != null) {
-      videoPath = path;
-      setState(() {});
     }
   }
 
@@ -136,8 +99,6 @@ class _CameraTestState extends State<CameraTest> {
                     imagePath: image!.path,
                   )))
           .then((value) => {cameraController.openUVCCamera()});
-      img = image?.path;
-      setState(() {});
     }
   }
 }
