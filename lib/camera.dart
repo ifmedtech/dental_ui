@@ -18,8 +18,27 @@ class _CameraTestState extends State<CameraTest> {
   void initState() {
     super.initState();
     // cameraController.initializeCamera();
+    // cameraController.updateResolution(PreviewSize(
+    //   width: MediaQuery.sizeOf(context).width.toInt(),
+    //   height: MediaQuery.sizeOf(context).height.toInt(),
+    // ));
+    cameraController.openUVCCamera();
+    cameraState();
     cameraController.msgCallback = (state) {
       showCustomToast(state);
+    };
+  }
+
+  void cameraState() {
+    cameraController.cameraStateCallback = (state) async {
+      if (UVCCameraState.opened == state) {
+        final allSizes = await cameraController.getAllPreviewSizes();
+        // print(allSizes);
+        // cameraController.updateResolution(PreviewSize(
+        //   width: (double.maxFinite).toInt(),
+        //   height: (MediaQuery.sizeOf(context).height * 0.8).toInt(),
+        // ));
+      }
     };
   }
 
@@ -46,30 +65,54 @@ class _CameraTestState extends State<CameraTest> {
       appBar: AppBar(
         title: const Text('USB Camera Debug Page'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              child: UVCCameraView(
-                cameraController: cameraController,
-                params: const UVCCameraViewParamsEntity(frameFormat: 0),
-                width: double.maxFinite,
-                height: MediaQuery.sizeOf(context).height * 0.6,
+      body: Stack(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              TextButton(
+                child: const Text('close'),
+                onPressed: () {
+                  cameraController.closeCamera();
+                },
               ),
+              TextButton(
+                child: const Text('open'),
+                onPressed: () {
+                  cameraController.openUVCCamera();
+                },
+              ),
+            ],
+          ),
+          SizedBox(
+            height: MediaQuery.sizeOf(context).height,
+            width: MediaQuery.sizeOf(context).width,
+            child: UVCCameraView(
+              cameraController: cameraController,
+              params: const UVCCameraViewParamsEntity(frameFormat: 0),
+              width: MediaQuery.sizeOf(context).width,
+              height: MediaQuery.sizeOf(context).height,
             ),
-            SizedBox(height: 10),
-            FilledButton.tonal(
-              onPressed: () => takePicture(0),
-              child: const Text('Take Picture'),
+          ),
+          Positioned(
+            bottom: 20,
+            right: 10,
+            left: 10,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FilledButton.tonal(
+                  onPressed: () => takePicture(0),
+                  child: const Text('Take Picture'),
+                ),
+                FilledButton.tonal(
+                  onPressed: () => picturePicker(),
+                  child: const Text('Pick Image'),
+                ),
+              ],
             ),
-            FilledButton.tonal(
-              onPressed: () => picturePicker(),
-              child: const Text('Pick Image'),
-            ),
-            const SizedBox(height: 100)
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
