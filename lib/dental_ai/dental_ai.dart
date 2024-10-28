@@ -1,115 +1,58 @@
-
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:image/image.dart' as img;
 import 'package:tflite_flutter/tflite_flutter.dart';
 
 class DentalAi {
-  late List<int> inputShape;
-  late List<int> outputShape;
+  final File file;
+  final List<String> _classNames = ['Caries', 'Plaque'];
+  final int _inputSize = 224;
 
-  late TfLiteType inputType;
-  late TfLiteType outputType;
+  DentalAi({required this.file});
 
-  late Interpreter interpreter;
+  Future<String> classifyImage() async {
+    String modelResult = '';
+    final interpreter = await Interpreter.fromAsset(
+        'assets/ai_model/dental_classification_model.tflite');
 
-  List<String> classificationLabels = ['Caries', 'Plaque'];
+    var input = await preprocessImage();
 
-  DentalAi() {
-    initModel();
+    var output =
+        List.filled(_classNames.length, 0.0).reshape([1, _classNames.length]);
+
+    interpreter.run(input, output);
+
+    interpreter.close();
+
+    List<Map<String, dynamic>> predictions = [];
+    for (int i = 0; i < _classNames.length; i++) {
+      predictions.add({
+        'label': _classNames[i],
+        'confidence': output[0][i] // Confidence score for each class
+      });
+      modelResult = "$modelResult${_classNames[i]} : ${output[0][i]}\n";
+    }
+
+    return modelResult; // Returns sorted predictions with confidence scores
   }
 
-  Future<void> initModel() async {
-    interpreter = await Interpreter.fromAsset(
-        'ai_model/dental_classification_model.tflite');
+  Future<Uint8List> preprocessImage() async {
+    Uint8List imageData = await file.readAsBytes();
+    img.Image? image = img.decodeImage(imageData);
+    img.Image resizedImage =
+        img.copyResize(image!, width: _inputSize, height: _inputSize);
+    var input = Float32List(_inputSize * _inputSize * 3);
+    var pixelIndex = 0;
 
-    inputShape = interpreter.getInputTensor(0).shape;
-    outputShape = interpreter.getOutputTensor(0).shape;
+    for (var y = 0; y < _inputSize; y++) {
+      for (var x = 0; x < _inputSize; x++) {
+        var pixel = resizedImage.getPixel(x, y);
+        input[pixelIndex++] = img.getRed(pixel) / 255.0; // Normalize to [0, 1]
+        input[pixelIndex++] = img.getGreen(pixel) / 255.0;
+        input[pixelIndex++] = img.getBlue(pixel) / 255.0;
+      }
+    }
 
-    print('Input shape: $inputShape');
-    print('Output shape: $outputShape');
-
-    // #3
-    // inputType = interpreter.getInputTensor(0).type;
-    // outputType = interpreter.getOutputTensor(0).type;
+    return input.buffer.asUint8List(); // Return preprocessed image as Uint8List
   }
-
-  // Future<TensorImage> _preProcessImage(File imageFile) async {
-  //   var image = img.decodeImage(imageFile.readAsBytesSync())!;
-  //
-  //   final inputTensor = TensorImage(inputType);
-  //   inputTensor.loadImage(image);
-  //
-  //   // #2
-  //   final minLength = min(inputTensor.height, inputTensor.width);
-  //   final cropOp = ResizeWithCropOrPadOp(minLength, minLength);
-  //
-  //   // #3
-  //   final shapeLength = inputShape[1];
-  //   final resizeOp = ResizeOp(shapeLength, shapeLength, ResizeMethod.BILINEAR);
-  //
-  //   // #4
-  //   final normalizeOp = NormalizeOp(127.5, 127.5);
-  //
-  //   // #5
-  //   final imageProcessor = ImageProcessorBuilder()
-  //       .add(cropOp)
-  //       .add(resizeOp)
-  //       .add(normalizeOp)
-  //       .build();
-  //
-  //   imageProcessor.process(inputTensor);
-  //
-  //   debugPrint(
-  //     'Pre-processed image: ${inputTensor.width}x${image.height}, '
-  //     'size: ${inputTensor.buffer.lengthInBytes} bytes',
-  //   );
-  //   // #6
-  //   return inputTensor;
-  // }
-
-  // Future<ClassifierCategory> predict(File imageFile) async {
-  //   final inputImage = await _preProcessImage(imageFile);
-  //
-  //   // TODO: run TF Lite
-  //   // #1
-  //   final outputBuffer = TensorBuffer.createFixedSize(
-  //     outputShape,
-  //     outputType,
-  //   );
-  //
-  //   // #2
-  //   interpreter.run(inputImage.buffer, outputBuffer.buffer);
-  //   debugPrint('OutputBuffer: ${outputBuffer.getDoubleList()}');
-  //
-  //   // TODO: _postProcessOutput
-  //   // Post Process the outputBuffer
-  //   final resultCategories = _postProcessOutput(outputBuffer);
-  //   final topResult = resultCategories.first;
-  //
-  //   debugPrint('Top category: $topResult');
-  //
-  //   return topResult;
-  // }
-  //
-  // List<ClassifierCategory> _postProcessOutput(TensorBuffer outputBuffer) {
-  //   // #1
-  //   final probabilityProcessor = TensorProcessorBuilder().build();
-  //
-  //   probabilityProcessor.process(outputBuffer);
-  //
-  //   // #2
-  //   final labelledResult =
-  //       TensorLabel.fromList(classificationLabels, outputBuffer);
-  //
-  //   // #3
-  //   final categoryList = <ClassifierCategory>[];
-  //   labelledResult.getMapWithFloatValue().forEach((key, value) {
-  //     final category = ClassifierCategory(key, value);
-  //     categoryList.add(category);
-  //     debugPrint('label: ${category.label}, score: ${category.score}');
-  //   });
-  //
-  //   // #4
-  //   categoryList.sort((a, b) => (b.score > a.score ? 1 : -1));
-  //
-  //   return categoryList;
-  // }
 }
