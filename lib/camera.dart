@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:dental_ui/main.dart';
+import 'package:dental_ui/image_prediction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uvc_camera/flutter_uvc_camera.dart';
 import 'package:image_picker/image_picker.dart';
@@ -82,7 +82,7 @@ class _CameraTestState extends State<CameraTest> {
             SizedBox(height: 10),
             FilledButton.tonal(
               onPressed: () => takePicture(0),
-              child: Text('Take Picture'),
+              child: const Text('Take Picture'),
             ),
             FilledButton.tonal(
               onPressed: () => picturePicker(),
@@ -108,12 +108,11 @@ class _CameraTestState extends State<CameraTest> {
       cameraController.closeCamera();
       Navigator.of(context)
           .push(MaterialPageRoute(
-              builder: (context) => HomePage(
+              builder: (context) => ImagePrediction(
                     imagePath: path,
                   )))
           .then((value) => {cameraController.openUVCCamera()});
       img = path;
-      print("Image path is ");
       setState(() {});
     }
   }
@@ -133,12 +132,11 @@ class _CameraTestState extends State<CameraTest> {
       cameraController.closeCamera();
       Navigator.of(context)
           .push(MaterialPageRoute(
-              builder: (context) => HomePage(
+              builder: (context) => ImagePrediction(
                     imagePath: image!.path,
                   )))
           .then((value) => {cameraController.openUVCCamera()});
       img = image?.path;
-      print("Image path is ");
       setState(() {});
     }
   }
