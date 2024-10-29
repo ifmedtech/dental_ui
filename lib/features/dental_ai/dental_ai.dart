@@ -33,7 +33,7 @@ class DentalAi {
       modelResult = "$modelResult${_classNames[i]} : ${output[0][i]}\n";
     }
 
-    return modelResult; // Returns sorted predictions with confidence scores
+    return modelResult;
   }
 
   Future<Uint8List> preprocessImage() async {
@@ -47,12 +47,12 @@ class DentalAi {
     for (var y = 0; y < _inputSize; y++) {
       for (var x = 0; x < _inputSize; x++) {
         var pixel = resizedImage.getPixel(x, y);
-        input[pixelIndex++] = img.getRed(pixel) / 255.0; // Normalize to [0, 1]
+        input[pixelIndex++] = img.getRed(pixel) / 255.0; 
         input[pixelIndex++] = img.getGreen(pixel) / 255.0;
         input[pixelIndex++] = img.getBlue(pixel) / 255.0;
       }
     }
 
-    return input.buffer.asUint8List(); // Return preprocessed image as Uint8List
+    return input.buffer.asUint8List();
   }
 }
