@@ -8,26 +8,38 @@ class OnBoardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
       body: Column(
         children: [
           Image.asset(
             ImageConstant.onboarding,
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.cover,
+            width: double.maxFinite,
+            height: MediaQuery.sizeOf(context).height * 0.55,
           ),
-          Padding(
+          Container(
+            height: MediaQuery.sizeOf(context).height * 0.44,
             padding: const EdgeInsets.all(20),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
                   TextConstant.onboarding,
-                  style: Theme.of(context).textTheme.displayMedium,
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.background),
                 ),
+                Spacer(),
                 SizedBox(
                   width: double.maxFinite,
                   child: FilledButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            Theme.of(context).colorScheme.background)),
                     onPressed: () {},
-                    child: Text(TextConstant.continueT),
+                    child: Text(
+                      TextConstant.continueT,
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.onBackground),
+                    ),
                   ),
                 )
               ],

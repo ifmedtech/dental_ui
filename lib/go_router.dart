@@ -1,4 +1,4 @@
-import 'package:dental_ui/camera.dart';
+import 'package:dental_ui/features/app/presentation/pages/on_boarding_page.dart';
 import 'package:go_router/go_router.dart';
 
 class Routing {
@@ -6,7 +6,7 @@ class Routing {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const CameraTest(),
+        builder: (context, state) => const OnBoardingPage(),
       ),
     ],
   );
