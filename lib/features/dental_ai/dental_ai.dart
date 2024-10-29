@@ -6,7 +6,7 @@ import 'package:tflite_flutter/tflite_flutter.dart';
 class DentalAi {
   final File file;
   final List<String> _classNames = ['Caries', 'Plaque'];
-  final int _inputSize = 224;
+  final int _inputSize = 180;
 
   DentalAi({required this.file});
 
