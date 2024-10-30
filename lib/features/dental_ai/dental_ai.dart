@@ -28,7 +28,7 @@ class DentalAi {
     for (int i = 0; i < _classNames.length; i++) {
       predictions.add({
         'label': _classNames[i],
-        'confidence': output[0][i] // Confidence score for each class
+        'confidence': output[0][i]
       });
       modelResult = "$modelResult${_classNames[i]} : ${output[0][i]}\n";
     }

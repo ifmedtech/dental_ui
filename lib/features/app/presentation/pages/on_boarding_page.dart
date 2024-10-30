@@ -1,6 +1,8 @@
+import 'package:dental_ui/core/router/app_route.dart';
 import 'package:dental_ui/core/utils/constant/image_constant.dart';
 import 'package:dental_ui/core/utils/constant/text_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({super.key});
@@ -34,7 +36,7 @@ class OnBoardingPage extends StatelessWidget {
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
                             Theme.of(context).colorScheme.background)),
-                    onPressed: () {},
+                    onPressed: () => context.goNamed(AppRoute.signIn),
                     child: Text(
                       TextConstant.continueT,
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(

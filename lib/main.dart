@@ -1,5 +1,5 @@
 import 'package:dental_ui/core/theme/app_theme.dart';
-import 'package:dental_ui/go_router.dart';
+import 'package:dental_ui/core/router/go_router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
