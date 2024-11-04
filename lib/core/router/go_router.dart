@@ -9,7 +9,7 @@ import 'package:go_router/go_router.dart';
 
 class Routing {
   static GoRouter goRouter = GoRouter(
-    initialLocation: '/${AppRoute.overView}',
+    initialLocation: '/${AppRoute.onBoarding}',
     routes: [
       GoRoute(
         path: '/${AppRoute.onBoarding}',

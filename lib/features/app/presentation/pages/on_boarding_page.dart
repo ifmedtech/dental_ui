@@ -1,4 +1,5 @@
 import 'package:dental_ui/core/router/app_route.dart';
+import 'package:dental_ui/core/utils/color_utils.dart';
 import 'package:dental_ui/core/utils/constant/image_constant.dart';
 import 'package:dental_ui/core/utils/constant/text_constant.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class OnBoardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: ColorUtils.onBoarding,
       body: Column(
         children: [
           Image.asset(
@@ -29,7 +30,7 @@ class OnBoardingPage extends StatelessWidget {
                   style: Theme.of(context).textTheme.displayMedium!.copyWith(
                       color: Theme.of(context).colorScheme.background),
                 ),
-                Spacer(),
+                const Spacer(),
                 SizedBox(
                   width: double.maxFinite,
                   child: FilledButton(
@@ -43,7 +44,8 @@ class OnBoardingPage extends StatelessWidget {
                           color: Theme.of(context).colorScheme.onBackground),
                     ),
                   ),
-                )
+                ),
+                const SizedBox(height: 30),
               ],
             ),
           ),

@@ -12,37 +12,37 @@ class OverViewPage extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           SliverAppBar(
-              // floating: true,
-              // snap: true,
-              expandedHeight: 10,
-              flexibleSpace: FlexibleSpaceBar(
-                background: SizedBox(
-                  child: FilledButton(
-                    onPressed: () {},
-                    child: const Text('Connect the device'),
-                  ),
-                ),
-              )),
+            // floating: true,
+            // snap: true,
+            expandedHeight: 10,
+            flexibleSpace: FlexibleSpaceBar(
+              background: FilledButton(
+                onPressed: () {},
+                child: const Text('Connect the device'),
+              ),
+            ),
+          ),
           SliverAppBar(
               expandedHeight: 250,
               floating: true,
               snap: true,
               flexibleSpace: FlexibleSpaceBar(
                 background: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 20),
                     Text(
                       "AI Analysis",
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Container(
                       height: 150,
                       width: double.maxFinite,
                       decoration: BoxDecoration(
-                        color: ColorUtils.get(context).primary.withOpacity(0.8),
-                        borderRadius: BorderRadius.circular(10)
-                      ),
+                          color:
+                              ColorUtils.get(context).primary.withOpacity(0.8),
+                          borderRadius: BorderRadius.circular(10)),
                       child: Row(
                         children: [
                           Column(
