@@ -5,6 +5,6 @@ class AiAnalysisPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("AI Analysis Page");
+    return const Center(child: Text("AI Analysis Page"));
   }
 }

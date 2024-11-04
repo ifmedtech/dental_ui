@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
@@ -6,6 +5,6 @@ class ResultPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("Result Page");
+    return const Center(child: Text("Result Page"));
   }
 }

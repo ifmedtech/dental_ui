@@ -170,6 +170,7 @@ class OverViewPage extends StatelessWidget {
                                 Row(
                                   children: [
                                     Text("View Analysis"),
+                                    SizedBox(width: 2),
                                     Icon(
                                       Icons.arrow_forward_ios_outlined,
                                       size: 12,
