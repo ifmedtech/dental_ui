@@ -42,6 +42,7 @@ flutter:
     - assets/labels/dental_labels.txt
     - assets/images/pages/onboarding_pages/onboarding.png
     - assets/icons/
+    - assets/icons/bottom_tab/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

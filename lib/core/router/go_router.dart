@@ -1,5 +1,7 @@
 import 'package:dental_ui/core/router/app_route.dart';
+import 'package:dental_ui/features/app/presentation/pages/bottom_tab/ai_analysis_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/overview_page.dart';
+import 'package:dental_ui/features/app/presentation/pages/bottom_tab/result_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/home_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/on_boarding_page.dart';
 import 'package:dental_ui/features/authentication/presentation/pages/sign_in_page.dart';
@@ -28,7 +30,17 @@ class Routing {
             path: '/${AppRoute.overView}',
             name: AppRoute.overView,
             builder: (context, state) => const OverViewPage(),
-          )
+          ),
+          GoRoute(
+            path: '/${AppRoute.aiAnalysis}',
+            name: AppRoute.aiAnalysis,
+            builder: (context, state) => const AiAnalysisPage(),
+          ),
+          GoRoute(
+            path: '/${AppRoute.result}',
+            name: AppRoute.result,
+            builder: (context, state) => const ResultPage(),
+          ),
         ],
       ),
     ],
