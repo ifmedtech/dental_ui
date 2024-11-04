@@ -41,6 +41,7 @@ flutter:
     - assets/ai_model/model.tflite
     - assets/labels/dental_labels.txt
     - assets/images/pages/onboarding_pages/onboarding.png
+    - assets/images/
     - assets/icons/
     - assets/icons/bottom_tab/
   #   - images/a_dot_ham.jpeg

@@ -121,14 +121,73 @@ class OverViewPage extends StatelessWidget {
           SliverList.builder(
             itemCount: 5,
             itemBuilder: (context, index) => Container(
-              height: 200,
+              height: 160,
               margin: EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(width: 0.05),
               ),
-              child: Column(
-                children: [],
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      height: double.maxFinite,
+                      // decoration: BoxDecoration(color: Colors.red),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.asset(
+                          'assets/images/sample.png',
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 7,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SelectableText(
+                            'Case Id: 31a',
+                          ),
+                          SelectableText(
+                            '15/10/2024 | 11:35',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          SelectableText(
+                            'AI Analysis : 2 caries , light plaque buildup.',
+                          ),
+                          Container(
+                            width: double.maxFinite,
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text("View Analysis"),
+                                    Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      size: 12,
+                                    ),
+                                  ],
+                                ),
+                                Icon(
+                                  Icons.download_outlined,
+                                  size: 12,
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
