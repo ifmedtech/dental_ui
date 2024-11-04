@@ -1,4 +1,3 @@
-import 'package:dental_ui/core/theme/app_theme.dart';
 import 'package:dental_ui/core/router/go_router.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +12,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'OraVue',
-      theme: MaterialTheme.theme(MaterialTheme.lightScheme().toColorScheme()),
-      darkTheme:
-          MaterialTheme.theme(MaterialTheme.darkScheme().toColorScheme()),
+      // theme: MaterialTheme.theme(MaterialTheme.lightScheme().toColorScheme()),
+      theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF636AE8))),
+      // darkTheme:
+      //     MaterialTheme.theme(MaterialTheme.darkScheme().toColorScheme()),
       routerConfig: Routing.goRouter,
     );
   }
