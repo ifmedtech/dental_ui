@@ -152,7 +152,7 @@ class OverViewPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SelectableText(
+                          const SelectableText(
                             'Case Id: 31a',
                           ),
                           SelectableText(
