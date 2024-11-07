@@ -3,9 +3,9 @@ import 'package:dental_ui/core/utils/responsive_utils/responsive_padding.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/router/app_route.dart';
-import '../../../../../core/utils/color_utils.dart';
-import '../../../../../core/utils/constant/icon_constant.dart';
+import 'package:dental_ui/core/router/app_route.dart';
+import 'package:dental_ui/core/utils/color_utils.dart';
+import 'package:dental_ui/core/utils/constant/icon_constant.dart';
 
 class ViewAnalysisPage extends StatelessWidget {
   const ViewAnalysisPage({super.key});

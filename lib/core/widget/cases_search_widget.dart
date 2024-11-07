@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../../core/utils/color_utils.dart';
 import 'package:dental_ui/core/utils/constant/icon_constant.dart';
 
 class CasesSearchWidget extends StatelessWidget {
@@ -19,7 +18,7 @@ class CasesSearchWidget extends StatelessWidget {
         decoration: InputDecoration(
           labelText: 'Cases',
           filled: true,
-          fillColor: ColorUtils.searchBoxColor,
+          fillColor: Colors.grey[300],
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(32),
             borderSide: BorderSide.none,
@@ -28,7 +27,7 @@ class CasesSearchWidget extends StatelessWidget {
           suffixIcon: IconButton(
             icon: SvgPicture.asset(
               IconConstant.searchIcon,
-              colorFilter: ColorFilter.mode(ColorUtils.black, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn),
             ),
             onPressed: onSearchPressed ?? () {
               print('Search button clicked');

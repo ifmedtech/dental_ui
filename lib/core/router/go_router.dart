@@ -4,7 +4,6 @@ import 'package:dental_ui/features/app/presentation/pages/bottom_tab/overview_pa
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/result_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/home_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/on_boarding_page.dart';
-import 'package:dental_ui/features/app/presentation/pages/progress_chart_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/view_analysis_page.dart';
 import 'package:dental_ui/features/authentication/presentation/pages/sign_in_page.dart';
 import 'package:go_router/go_router.dart';
@@ -42,11 +41,6 @@ class Routing {
             path: '/${AppRoute.result}',
             name: AppRoute.result,
             builder: (context, state) => const ResultPage(),
-          ),
-          GoRoute(
-            path: '/${AppRoute.progressChart}',
-            name: AppRoute.progressChart,
-            builder: (context, state) => const ProgressChartPage(),
           ),
           GoRoute(
             path: '/${AppRoute.viewAnalysis}',

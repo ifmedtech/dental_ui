@@ -3,9 +3,9 @@ import 'package:dental_ui/core/utils/responsive_utils/responsive_padding.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/router/app_route.dart';
-import '../../../../../core/utils/color_utils.dart';
-import '../../../../../core/utils/constant/icon_constant.dart';
+import 'package:dental_ui/core/router/app_route.dart';
+import 'package:dental_ui/core/utils/color_utils.dart';
+import 'package:dental_ui/core/utils/constant/icon_constant.dart';
 
 class AiAnalysisPage extends StatelessWidget {
   const AiAnalysisPage({super.key});
@@ -190,7 +190,7 @@ class AiAnalysisPage extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min, // Minimize the Row's width to fit its children
                             children: [
                               FilledButton(
-                                onPressed: () => _showCustomBottomSheet(context),
+                                onPressed: () => _saveReesultBottomSheet(context),
                                 style: ButtonStyle(
                                   shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
@@ -241,7 +241,7 @@ class AiAnalysisPage extends StatelessWidget {
 }
 
 // This function opens the custom bottom sheet
-void _showCustomBottomSheet(BuildContext context) {
+void _saveReesultBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true, // Allows the sheet to be scrollable

@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/color_utils.dart';
+import 'package:dental_ui/core/utils/color_utils.dart';
 
 class ChartWidget extends StatefulWidget {
   final List<FlSpot> weeklyData;
@@ -25,7 +25,7 @@ class _ChartWidgetState extends State<ChartWidget> {
       height: 320, // Increased height to accommodate buttons and chart
       margin: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
-        color: ColorUtils.graphBgColor,
+        color: ColorUtils.get(context).primary.withOpacity(1),
         borderRadius: BorderRadius.circular(10),
         border: Border.all(width: 0.05),
       ),
@@ -39,12 +39,12 @@ class _ChartWidgetState extends State<ChartWidget> {
                 label: Text(
                   "Weekly",
                   style: TextStyle(
-                    color: isWeekly ? ColorUtils.btnColor : Colors.white,
+                    color: isWeekly ? ColorUtils.get(context).primary.withOpacity(0.6) : Colors.white,
                   ),
                 ),
                 selected: isWeekly,
                 selectedColor: Colors.white,
-                backgroundColor: ColorUtils.btnColor,
+                backgroundColor: ColorUtils.get(context).primary.withOpacity(0.6),
                 onSelected: (selected) {
                   setState(() {
                     isWeekly = true;
@@ -60,12 +60,12 @@ class _ChartWidgetState extends State<ChartWidget> {
                 label: Text(
                   "Monthly",
                   style: TextStyle(
-                    color: !isWeekly ? ColorUtils.btnColor : Colors.white,
+                    color: !isWeekly ? ColorUtils.get(context).primary.withOpacity(0.6) : Colors.white,
                   ),
                 ),
                 selected: !isWeekly,
                 selectedColor: Colors.white,
-                backgroundColor: ColorUtils.btnColor,
+                backgroundColor: ColorUtils.get(context).primary.withOpacity(0.6),
                 onSelected: (selected) {
                   setState(() {
                     isWeekly = false;
@@ -87,7 +87,7 @@ class _ChartWidgetState extends State<ChartWidget> {
                   LineChartBarData(
                     spots: isWeekly ? widget.weeklyData : widget.monthlyData,
                     isCurved: true,
-                    color: ColorUtils.white,
+                    color: Colors.white,
                     barWidth: 4,
                   ),
                 ],
@@ -107,7 +107,7 @@ class _ChartWidgetState extends State<ChartWidget> {
                             axisSide: meta.axisSide,
                             child: Text(
                               daysOfWeek[value.toInt() % 7],
-                              style: TextStyle(color: ColorUtils.white),
+                              style: TextStyle(color: Colors.white),
                             ),
                           );
                         } else {
@@ -116,7 +116,7 @@ class _ChartWidgetState extends State<ChartWidget> {
                             axisSide: meta.axisSide,
                             child: Text(
                               months[value.toInt() % 6],
-                              style: TextStyle(color: ColorUtils.white),
+                              style: TextStyle(color: Colors.white),
                             ),
                           );
                         }
@@ -132,7 +132,7 @@ class _ChartWidgetState extends State<ChartWidget> {
                     for (var spot in (isWeekly ? widget.weeklyData : widget.monthlyData))
                       VerticalLine(
                         x: spot.x, // Position of the vertical line
-                        color: ColorUtils.white, // Color of the vertical line
+                        color: Colors.white, // Color of the vertical line
                         strokeWidth: 2, // Width of the vertical line
                       ),
                   ],

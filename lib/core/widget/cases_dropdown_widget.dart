@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../../core/utils/color_utils.dart';
 import 'package:dental_ui/core/utils/constant/icon_constant.dart';
 
 class CasesDropdownWidget extends StatefulWidget {
@@ -28,7 +27,7 @@ class _CasesDropdownWidgetState extends State<CasesDropdownWidget> {
       child: DropdownButtonHideUnderline(
         child: Container(
           decoration: BoxDecoration(
-            color: ColorUtils.searchBoxColor,
+            color: Colors.grey[300],
             borderRadius: BorderRadius.circular(52),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -48,7 +47,7 @@ class _CasesDropdownWidgetState extends State<CasesDropdownWidget> {
                   padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    color: ColorUtils.white,
+                    color: Colors.white,
                   ),
                   child: Text(
                     value,
