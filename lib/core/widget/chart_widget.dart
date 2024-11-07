@@ -39,12 +39,12 @@ class _ChartWidgetState extends State<ChartWidget> {
                 label: Text(
                   "Weekly",
                   style: TextStyle(
-                    color: isWeekly ? ColorUtils.get(context).primary.withOpacity(0.6) : Colors.white,
+                    color: isWeekly ? ColorUtils.get(context).primary : Theme.of(context).colorScheme.surface,
                   ),
                 ),
                 selected: isWeekly,
-                selectedColor: Colors.white,
-                backgroundColor: ColorUtils.get(context).primary.withOpacity(0.6),
+                selectedColor: Theme.of(context).colorScheme.surface,
+                backgroundColor: ColorUtils.get(context).primary.withOpacity(0.8),
                 onSelected: (selected) {
                   setState(() {
                     isWeekly = true;
@@ -60,12 +60,12 @@ class _ChartWidgetState extends State<ChartWidget> {
                 label: Text(
                   "Monthly",
                   style: TextStyle(
-                    color: !isWeekly ? ColorUtils.get(context).primary.withOpacity(0.6) : Colors.white,
+                    color: !isWeekly ? ColorUtils.get(context).primary : Theme.of(context).colorScheme.surface,
                   ),
                 ),
                 selected: !isWeekly,
-                selectedColor: Colors.white,
-                backgroundColor: ColorUtils.get(context).primary.withOpacity(0.6),
+                selectedColor: Theme.of(context).colorScheme.surface,
+                backgroundColor: ColorUtils.get(context).primary.withOpacity(0.8),
                 onSelected: (selected) {
                   setState(() {
                     isWeekly = false;
@@ -87,7 +87,7 @@ class _ChartWidgetState extends State<ChartWidget> {
                   LineChartBarData(
                     spots: isWeekly ? widget.weeklyData : widget.monthlyData,
                     isCurved: true,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.surface,
                     barWidth: 4,
                   ),
                 ],
@@ -107,7 +107,7 @@ class _ChartWidgetState extends State<ChartWidget> {
                             axisSide: meta.axisSide,
                             child: Text(
                               daysOfWeek[value.toInt() % 7],
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Theme.of(context).colorScheme.surface),
                             ),
                           );
                         } else {
@@ -116,7 +116,7 @@ class _ChartWidgetState extends State<ChartWidget> {
                             axisSide: meta.axisSide,
                             child: Text(
                               months[value.toInt() % 6],
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Theme.of(context).colorScheme.surface),
                             ),
                           );
                         }
@@ -132,7 +132,7 @@ class _ChartWidgetState extends State<ChartWidget> {
                     for (var spot in (isWeekly ? widget.weeklyData : widget.monthlyData))
                       VerticalLine(
                         x: spot.x, // Position of the vertical line
-                        color: Colors.white, // Color of the vertical line
+                        color: Theme.of(context).colorScheme.surface, // Color of the vertical line
                         strokeWidth: 2, // Width of the vertical line
                       ),
                   ],

@@ -27,7 +27,7 @@ class _CasesDropdownWidgetState extends State<CasesDropdownWidget> {
       child: DropdownButtonHideUnderline(
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.grey[300],
+            color: Theme.of(context).colorScheme.outlineVariant.withOpacity(0.5),
             borderRadius: BorderRadius.circular(52),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -37,7 +37,7 @@ class _CasesDropdownWidgetState extends State<CasesDropdownWidget> {
             hint: Text(
               widget.placeholder,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: Colors.black,
+                color: Theme.of(context).colorScheme.shadow,
               ),
             ),
             items: widget.caseItems.map((String value) {
@@ -47,12 +47,12 @@ class _CasesDropdownWidgetState extends State<CasesDropdownWidget> {
                   padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.surface,
                   ),
                   child: Text(
                     value,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Colors.black,
+                        color: Theme.of(context).colorScheme.shadow,
                     ),
                   ),
                 ),
@@ -78,7 +78,7 @@ class _CasesDropdownWidgetState extends State<CasesDropdownWidget> {
                   child: Text(
                     value,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Colors.black,
+                      color: Theme.of(context).colorScheme.shadow,
                     ),
                   ),
                 );

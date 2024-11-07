@@ -135,7 +135,7 @@ class _ResultPageState extends State<ResultPage> {
                     children: [
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-                        color: Colors.grey[300],
+                        color: Theme.of(context).colorScheme.outlineVariant.withOpacity(0.5),
                         child: Text(
                           'Analysis 31a_4',
                           style: Theme.of(context).textTheme.bodySmall,

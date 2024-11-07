@@ -16,9 +16,9 @@ class CasesSearchWidget extends StatelessWidget {
       width: 115,
       child: TextField(
         decoration: InputDecoration(
-          labelText: 'Cases',
+          hintText: 'Cases',
           filled: true,
-          fillColor: Colors.grey[300],
+          fillColor: Theme.of(context).colorScheme.outlineVariant.withOpacity(0.5),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(32),
             borderSide: BorderSide.none,
@@ -27,7 +27,7 @@ class CasesSearchWidget extends StatelessWidget {
           suffixIcon: IconButton(
             icon: SvgPicture.asset(
               IconConstant.searchIcon,
-              colorFilter: ColorFilter.mode(Colors.black, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.outline.withOpacity(1), BlendMode.srcIn),
             ),
             onPressed: onSearchPressed ?? () {
               print('Search button clicked');
