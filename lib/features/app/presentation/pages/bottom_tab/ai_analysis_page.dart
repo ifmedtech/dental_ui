@@ -304,7 +304,7 @@ void _showCustomBottomSheet(BuildContext context) {
               children: [
                 Text(
                   'Previous Cases',
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 SizedBox(
                   width: 140, // Reduced width of the search field
