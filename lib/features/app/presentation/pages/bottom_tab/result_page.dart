@@ -48,37 +48,6 @@ class _ResultPageState extends State<ResultPage> {
     );
   }
 
-  // Widget _buildAppBar() {
-  //   return SliverAppBar(
-  //     automaticallyImplyLeading: false,
-  //     flexibleSpace: Container(
-  //       padding: const EdgeInsets.symmetric(horizontal: 16),
-  //       margin: const EdgeInsets.symmetric(vertical: 6),
-  //       child: Row(
-  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //         children: [
-  //           SvgPicture.asset(IconConstant.backIcon, width: 20, height: 20),
-  //           SizedBox(width: 8),
-  //           Expanded(
-  //             child: CasesDropdownWidget(
-  //             caseItems: ['Case Id: 31a', 'Case Id: 30a', 'Case Id: 29a', 'Case Id: 28a'],
-  //             placeholder: 'Select Case Id',
-  //             onChanged: (String selectedCaseId) {
-  //               print('Selected Case Id: $selectedCaseId');
-  //             },
-  //           ),),
-  //           SizedBox(width: 8),
-  //           CasesSearchWidget(
-  //             onSearchPressed: () {
-  //               // Custom search action, if needed
-  //             },
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Widget _buildHeaderRow(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
