@@ -5,15 +5,15 @@ import 'package:tflite_flutter/tflite_flutter.dart';
 
 class DentalAi {
   final File file;
-  final List<String> _classNames = ['Caries', 'Plaque'];
+  final List<String> _classNames = ['Caries', 'Normal Teeth', 'Plaque'];
   final int _inputSize = 180;
 
   DentalAi({required this.file});
 
   Future<String> classifyImage() async {
     String modelResult = '';
-    final interpreter = await Interpreter.fromAsset(
-        'assets/ai_model/dental_classification_model.tflite');
+    final interpreter =
+        await Interpreter.fromAsset('assets/ai_model/Latest_Dental_TF.tflite');
 
     var input = await preprocessImage();
 
@@ -24,13 +24,12 @@ class DentalAi {
 
     interpreter.close();
 
-    List<Map<String, dynamic>> predictions = [];
+    double maxValue = 0.0;
     for (int i = 0; i < _classNames.length; i++) {
-      predictions.add({
-        'label': _classNames[i],
-        'confidence': output[0][i]
-      });
-      modelResult = "$modelResult${_classNames[i]} : ${output[0][i]}\n";
+      if (output[0][i] > maxValue) {
+        maxValue = output[0][i];
+        modelResult = _classNames[i];
+      }
     }
 
     return modelResult;
@@ -47,9 +46,9 @@ class DentalAi {
     for (var y = 0; y < _inputSize; y++) {
       for (var x = 0; x < _inputSize; x++) {
         var pixel = resizedImage.getPixel(x, y);
-        input[pixelIndex++] = img.getRed(pixel) / 255.0; 
-        input[pixelIndex++] = img.getGreen(pixel) / 255.0;
-        input[pixelIndex++] = img.getBlue(pixel) / 255.0;
+        input[pixelIndex++] = img.getRed(pixel).toDouble();
+        input[pixelIndex++] = img.getGreen(pixel).toDouble();
+        input[pixelIndex++] = img.getBlue(pixel).toDouble();
       }
     }
 

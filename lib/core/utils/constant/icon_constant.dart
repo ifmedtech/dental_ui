@@ -14,4 +14,7 @@ class IconConstant {
   static const backIcon = '$_basePath/back_icon.svg';
   static const dropDownIcon = '$_basePath/drop_down_icon.svg';
   static const searchIcon = '$_basePath/search_icon.svg';
+  static const camera = '$_basePath/camera.svg';
+  static const scanner = '$_basePath/scanner.svg';
+  static const retake = '$_basePath/retake.svg';
 }

@@ -24,6 +24,9 @@ dependencies:
   go_router: ^14.2.3
   flutter_svg: ^2.0.10+1
   fl_chart: ^0.69.0
+  google_fonts: ^5.1.0
+  flutter_bloc: ^8.1.6
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -40,6 +43,7 @@ flutter:
   assets:
 #    - assets/ai_model/dental_classification_model.tflite
 #    - assets/ai_model/model.tflite
+    - assets/ai_model/Latest_Dental_TF.tflite
     - assets/labels/dental_labels.txt
     - assets/images/pages/onboarding_pages/onboarding.png
     - assets/images/

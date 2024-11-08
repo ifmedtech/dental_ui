@@ -9,7 +9,7 @@ class OverViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: ResponsivePadding.getPadding(context),
       child: CustomScrollView(
         slivers: [

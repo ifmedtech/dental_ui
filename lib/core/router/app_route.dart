@@ -3,6 +3,7 @@ class AppRoute {
   static const signIn = 'sign_in';
   static const overView = 'over_view';
   static const aiAnalysis = 'ai_analysis';
+  static const captureImage = 'capture_image';
   static const result = 'result';
   static const viewAnalysis = 'view_analysis';
 }

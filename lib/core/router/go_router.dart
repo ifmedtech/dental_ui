@@ -1,11 +1,13 @@
 import 'package:dental_ui/core/router/app_route.dart';
-import 'package:dental_ui/features/app/presentation/pages/bottom_tab/ai_analysis_page.dart';
+import 'package:dental_ui/features/ai_analysis/presentation/pages/capture_image_page.dart';
+import 'package:dental_ui/features/ai_analysis/presentation/pages/ai_analysis_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/overview_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/result_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/home_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/on_boarding_page.dart';
-import 'package:dental_ui/features/app/presentation/pages/view_analysis_page.dart';
+import 'package:dental_ui/features/app/presentation/pages/bottom_tab/view_analysis_page.dart';
 import 'package:dental_ui/features/authentication/presentation/pages/sign_in_page.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class Routing {
@@ -33,10 +35,18 @@ class Routing {
             builder: (context, state) => const OverViewPage(),
           ),
           GoRoute(
-            path: '/${AppRoute.aiAnalysis}',
-            name: AppRoute.aiAnalysis,
-            builder: (context, state) => const AiAnalysisPage(),
-          ),
+              path: '/${AppRoute.aiAnalysis}',
+              name: AppRoute.aiAnalysis,
+              builder: (context, state) {
+                String? path = state.uri.queryParameters['imagePath'];
+                if (path != null) {
+                  return AiAnalysisPage(
+                    imagePath: path,
+                  );
+                } else {
+                  return Scaffold();
+                }
+              }),
           GoRoute(
             path: '/${AppRoute.result}',
             name: AppRoute.result,
