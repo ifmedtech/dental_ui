@@ -7,8 +7,8 @@ import 'package:dental_ui/core/router/app_route.dart';
 import 'package:dental_ui/core/utils/color_utils.dart';
 import 'package:dental_ui/core/utils/constant/icon_constant.dart';
 
-class AiAnalysisPage extends StatelessWidget {
-  const AiAnalysisPage({super.key});
+class ViewAnalysisPage extends StatelessWidget {
+  const ViewAnalysisPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +24,9 @@ class AiAnalysisPage extends StatelessWidget {
               background: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const Text (
+                    'Analysis 31a_4'
+                  ),
                   const SizedBox(height: 3),
                   const Text(
                     "16/10/2024 | 12:35",
@@ -108,13 +111,13 @@ class AiAnalysisPage extends StatelessWidget {
                                                       Expanded(
                                                         child: Container(
                                                           height: 5, // Line thickness
-                                                          color: Theme.of(context).colorScheme.error, // red
+                                                          color: Colors.red, // First section color
                                                         ),
                                                       ),
                                                       Expanded(
                                                         child: Container(
                                                           height: 5, // Line thickness
-                                                          color: Colors.green, //green
+                                                          color: Colors.green, // Second section color
                                                         ),
                                                       ),
                                                     ],
@@ -160,13 +163,13 @@ class AiAnalysisPage extends StatelessWidget {
                                                       Expanded(
                                                         child: Container(
                                                           height: 5, // Line thickness
-                                                          color: Theme.of(context).colorScheme.error, // red
+                                                          color: Colors.red, // First section color
                                                         ),
                                                       ),
                                                       Expanded(
                                                         child: Container(
                                                           height: 5, // Line thickness
-                                                          color: Colors.green, //green
+                                                          color: Colors.green, // Second section color
                                                         ),
                                                       ),
                                                     ],
@@ -190,7 +193,7 @@ class AiAnalysisPage extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min, // Minimize the Row's width to fit its children
                             children: [
                               FilledButton(
-                                onPressed: () => _saveReesultBottomSheet(context),
+                                onPressed: () => _showCustomBottomSheet(context),
                                 style: ButtonStyle(
                                   shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
@@ -241,7 +244,7 @@ class AiAnalysisPage extends StatelessWidget {
 }
 
 // This function opens the custom bottom sheet
-void _saveReesultBottomSheet(BuildContext context) {
+void _showCustomBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true, // Allows the sheet to be scrollable
@@ -267,9 +270,9 @@ void _saveReesultBottomSheet(BuildContext context) {
                   width: 140,  // Reduced width of the text field
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: 'Case ID',
+                      labelText: 'Case ID',
                       filled: true,
-                      fillColor: Theme.of(context).colorScheme.outlineVariant.withOpacity(0.5),
+                      fillColor: Colors.grey[300],
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12), // Slightly smaller border radius
                         borderSide: BorderSide.none,
@@ -281,7 +284,6 @@ void _saveReesultBottomSheet(BuildContext context) {
                 Row(
                   children: [
                     IconButton(
-                      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
                       icon: SvgPicture.asset(
                         IconConstant.autoGenerateIcon, // Ensure this constant points to your SVG icon
                       ),
@@ -311,9 +313,9 @@ void _saveReesultBottomSheet(BuildContext context) {
                   width: 140, // Reduced width of the search field
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: 'Cases',
+                      labelText: 'Cases',
                       filled: true,
-                      fillColor: Theme.of(context).colorScheme.outlineVariant.withOpacity(0.5),//grey
+                      fillColor: Colors.grey[300],
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12), // Smaller radius
                         borderSide: BorderSide.none,
@@ -340,9 +342,9 @@ void _saveReesultBottomSheet(BuildContext context) {
                 padding: const EdgeInsets.all(8), // Same padding as the analysis section
                 margin: const EdgeInsets.only(top: 10), // Adjust margin as needed
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surface, // Background color
+                  color: Colors.white, // Background color
                   borderRadius: BorderRadius.circular(10), // Rounded corners
-                  border: Border.all(color: Theme.of(context).colorScheme.outlineVariant.withOpacity(0.5), width: 1), // Border styling
+                  border: Border.all(color: Colors.grey.shade300, width: 1), // Border styling
                 ),
                 child: Scrollbar( // Add this widget to show the scrollbar
                   thumbVisibility: true, // Ensures the scrollbar is visible when scrolling
@@ -355,20 +357,20 @@ void _saveReesultBottomSheet(BuildContext context) {
                           margin: const EdgeInsets.only(bottom: 8), // Reduced margin between items
                           padding: const EdgeInsets.all(6), // Reduced padding inside each item
                           decoration: BoxDecoration(
-                            //color: Theme.of(context).colorScheme.outlineVariant.withOpacity(0.5),
+                            color: Colors.grey.shade50,
                             borderRadius: BorderRadius.circular(8),
                             boxShadow: isFirstItem
                                 ? [
                               BoxShadow(
-                                color: Theme.of(context).colorScheme.outlineVariant.withOpacity(0.5),
+                                color: Colors.grey.shade300,
                                 blurRadius: 8,
                                 spreadRadius: 2,
                               ),
                             ]
                                 : [],
                             border: isFirstItem
-                                ? Border.all(color: Theme.of(context).colorScheme.outlineVariant.withOpacity(0.5), width: 2)
-                                : Border.all(color: ColorUtils.transparent),
+                                ? Border.all(color: Colors.grey.shade300, width: 2)
+                                : Border.all(color: Colors.transparent),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -427,8 +429,8 @@ void _saveReesultBottomSheet(BuildContext context) {
                         ),
                       ),
                       side: MaterialStateProperty.all(
-                        BorderSide(
-                          color: Theme.of(context).colorScheme.primary, // Set the border color
+                        const BorderSide(
+                          color: Colors.blue, // Set the border color
                           width: 2, // Set the border width
                         ),
                       ),
