@@ -24,17 +24,17 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
             seedColor: const Color(0xFF636AE8),
-            primary: Color(0xFF636AE8),
+            primary: const Color(0xFF636AE8),
           ),
           textTheme: GoogleFonts.interTextTheme().copyWith(
             displayLarge: const TextStyle(fontWeight: FontWeight.w400),
             displayMedium: GoogleFonts.archivo(fontWeight: FontWeight.w600),
             displaySmall: GoogleFonts.archivo(fontWeight: FontWeight.w600),
-            headlineLarge: const TextStyle(fontWeight: FontWeight.w400),
-            headlineMedium: const TextStyle(fontWeight: FontWeight.w400),
-            headlineSmall: const TextStyle(fontWeight: FontWeight.w400),
-            titleLarge: const TextStyle(fontWeight: FontWeight.w400),
-            titleMedium: const TextStyle(fontWeight: FontWeight.w400),
+            headlineLarge: GoogleFonts.archivo(fontWeight: FontWeight.w600),
+            headlineMedium: GoogleFonts.archivo(fontWeight: FontWeight.w600),
+            headlineSmall: GoogleFonts.archivo(fontWeight: FontWeight.w600),
+            titleLarge: GoogleFonts.archivo(fontWeight: FontWeight.w600),
+            titleMedium: GoogleFonts.archivo(fontWeight: FontWeight.w600),
             titleSmall: const TextStyle(fontWeight: FontWeight.w600),
             bodyLarge: const TextStyle(fontWeight: FontWeight.w400),
             bodyMedium: const TextStyle(fontWeight: FontWeight.w400),

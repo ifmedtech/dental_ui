@@ -173,7 +173,7 @@ class _AiAnalysisPageState extends State<AiAnalysisPage> {
                             children: [
                               FilledButton(
                                 onPressed: () =>
-                                    _saveReesultBottomSheet(context),
+                                    _saveResultBottomSheet(context),
                                 style: ButtonStyle(
                                   shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
@@ -235,7 +235,7 @@ class _AiAnalysisPageState extends State<AiAnalysisPage> {
 }
 
 // This function opens the custom bottom sheet
-void _saveReesultBottomSheet(BuildContext context) {
+void _saveResultBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true, // Allows the sheet to be scrollable

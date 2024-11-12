@@ -6,6 +6,7 @@ import 'package:dental_ui/features/app/presentation/pages/home_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/on_boarding_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/view_analysis_page.dart';
 import 'package:dental_ui/features/authentication/presentation/pages/sign_in_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,48 +17,75 @@ class Routing {
       GoRoute(
         path: '/${AppRoute.onBoarding}',
         name: AppRoute.onBoarding,
-        builder: (context, state) => const OnBoardingPage(),
+        pageBuilder: (context, state) =>
+            _PageTransition(child: const OnBoardingPage()),
       ),
       GoRoute(
         path: '/${AppRoute.signIn}',
         name: AppRoute.signIn,
-        builder: (context, state) => const SignInPage(),
+        pageBuilder: (context, state) => _PageTransition(
+          child: const SignInPage(),
+        ),
       ),
       ShellRoute(
-        builder: (context, state, child) => HomePage(
-          body: child,
+        pageBuilder: (context, state, child) => _PageTransition(
+          child: HomePage(
+            body: child,
+          ),
         ),
         routes: [
           GoRoute(
             path: '/${AppRoute.overView}',
             name: AppRoute.overView,
-            builder: (context, state) => const OverViewPage(),
+            pageBuilder: (context, state) =>
+                _PageTransition(child: const OverViewPage()),
           ),
           GoRoute(
               path: '/${AppRoute.aiAnalysis}',
               name: AppRoute.aiAnalysis,
-              builder: (context, state) {
+              pageBuilder: (context, state) {
                 String? path = state.uri.queryParameters['imagePath'];
                 if (path != null) {
-                  return AiAnalysisPage(
-                    imagePath: path,
+                  return _PageTransition(
+                    child: AiAnalysisPage(
+                      imagePath: path,
+                    ),
                   );
                 } else {
-                  return Scaffold();
+                  return _PageTransition(
+                    child: const Scaffold(),
+                  );
                 }
               }),
           GoRoute(
             path: '/${AppRoute.result}',
             name: AppRoute.result,
-            builder: (context, state) => const ResultPage(),
+            pageBuilder: (context, state) =>
+                _PageTransition(child: const ResultPage()),
           ),
           GoRoute(
             path: '/${AppRoute.viewAnalysis}',
             name: AppRoute.viewAnalysis,
-            builder: (context, state) => const ViewAnalysisPage(),
+            pageBuilder: (context, state) => _PageTransition(
+              child: const ViewAnalysisPage(),
+            ),
           ),
         ],
       ),
     ],
   );
+}
+
+class _PageTransition extends CustomTransitionPage {
+  _PageTransition({required super.child})
+      : super(
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return CupertinoPageTransition(
+              primaryRouteAnimation: animation,
+              secondaryRouteAnimation: secondaryAnimation,
+              linearTransition: true,
+              child: child,
+            );
+          },
+        );
 }

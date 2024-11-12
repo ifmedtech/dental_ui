@@ -1,6 +1,8 @@
 import 'package:dental_ui/core/utils/color_utils.dart';
 import 'package:dental_ui/core/utils/constant/icon_constant.dart';
 import 'package:dental_ui/core/utils/responsive_utils/responsive_padding.dart';
+import 'package:dental_ui/core/utils/text_utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -28,6 +30,7 @@ class OverViewPage extends StatelessWidget {
             expandedHeight: 210,
             floating: true,
             snap: true,
+            surfaceTintColor: ColorUtils.get(context).background,
             flexibleSpace: FlexibleSpaceBar(
               background: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +38,7 @@ class OverViewPage extends StatelessWidget {
                   const SizedBox(height: 20),
                   Text(
                     "AI Analysis",
-                    style: Theme.of(context).textTheme.headlineMedium,
+                    style: TextUtils.get(context).headlineMedium,
                   ),
                   const SizedBox(height: 20),
                   Container(
@@ -55,27 +58,27 @@ class OverViewPage extends StatelessWidget {
                             children: [
                               Text(
                                 "Start your AI Analysis",
-                                style: Theme.of(context)
-                                    .textTheme
+                                style: TextUtils.get(context)
                                     .titleLarge!
                                     .copyWith(
-                                        color: ColorUtils.get(context).surface),
+                                        color:
+                                            ColorUtils.get(context).background),
                               ),
                               Text(
                                 "Keep Track of your oral health, click here to start.",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
+                                style: TextUtils.get(context)
+                                    .bodyMedium!
                                     .copyWith(
-                                        color: ColorUtils.get(context).surface),
+                                        color:
+                                            ColorUtils.get(context).background),
                               ),
                               Text(
                                 "Last Analysis : 02/10/2024",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
+                                style: TextUtils.get(context)
+                                    .bodySmall!
                                     .copyWith(
-                                        color: ColorUtils.get(context).surface),
+                                        color:
+                                            ColorUtils.get(context).background),
                               ),
                             ],
                           ),
@@ -102,7 +105,7 @@ class OverViewPage extends StatelessWidget {
               children: [
                 Text(
                   "Past Analysis",
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: TextUtils.get(context).titleLarge,
                 ),
                 const Row(
                   mainAxisSize: MainAxisSize.min,
@@ -122,19 +125,18 @@ class OverViewPage extends StatelessWidget {
             itemCount: 5,
             itemBuilder: (context, index) => Container(
               height: 160,
-              margin: EdgeInsets.symmetric(vertical: 10),
+              margin: const EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(width: 0.05),
               ),
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Row(
                 children: [
                   Expanded(
                     flex: 3,
                     child: Container(
                       height: double.maxFinite,
-                      // decoration: BoxDecoration(color: Colors.red),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Image.asset(
@@ -152,24 +154,28 @@ class OverViewPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SelectableText(
+                          SelectableText(
                             'Case Id: 31a',
+                            style: TextUtils.get(context).bodyMedium,
                           ),
                           SelectableText(
                             '15/10/2024 | 11:35',
-                            style: Theme.of(context).textTheme.titleMedium,
+                            style: TextUtils.get(context).titleMedium,
                           ),
                           SelectableText(
                             'AI Analysis : 2 caries , light plaque buildup.',
                           ),
                           Container(
                             width: double.maxFinite,
-                            child: const Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
                                   children: [
-                                    Text("View Analysis"),
+                                    Text(
+                                      "View Analysis",
+                                      style: TextUtils.get(context).bodySmall,
+                                    ),
                                     SizedBox(width: 2),
                                     Icon(
                                       Icons.arrow_forward_ios_outlined,
@@ -177,10 +183,13 @@ class OverViewPage extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                Icon(
-                                  Icons.download_outlined,
-                                  size: 12,
-                                )
+                                SvgPicture.asset(
+                                  IconConstant.downloadIcon,
+                                  height: 12,
+                                  colorFilter: ColorFilter.mode(
+                                      ColorUtils.get(context).onBackground,
+                                      BlendMode.srcIn),
+                                ),
                               ],
                             ),
                           ),
