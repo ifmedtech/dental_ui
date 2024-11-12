@@ -1,5 +1,4 @@
 import 'package:dental_ui/core/router/app_route.dart';
-import 'package:dental_ui/features/ai_analysis/presentation/pages/capture_image_page.dart';
 import 'package:dental_ui/features/ai_analysis/presentation/pages/ai_analysis_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/overview_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/result_page.dart';
@@ -12,7 +11,7 @@ import 'package:go_router/go_router.dart';
 
 class Routing {
   static GoRouter goRouter = GoRouter(
-    initialLocation: '/${AppRoute.onBoarding}',
+    initialLocation: '/${AppRoute.overView}',
     routes: [
       GoRoute(
         path: '/${AppRoute.onBoarding}',

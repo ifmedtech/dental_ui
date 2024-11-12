@@ -18,15 +18,31 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => CaptureImageCubit()),
       ],
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         title: 'OraVue',
         // theme: MaterialTheme.theme(MaterialTheme.lightScheme().toColorScheme()),
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
             seedColor: const Color(0xFF636AE8),
+            primary: Color(0xFF636AE8),
           ),
-          textTheme: GoogleFonts.latoTextTheme().copyWith(
-              // bodyMedium:.oswald(textStyle: textTheme.bodyMedium GoogleFonts),
-              ),
+          textTheme: GoogleFonts.interTextTheme().copyWith(
+            displayLarge: const TextStyle(fontWeight: FontWeight.w400),
+            displayMedium: GoogleFonts.archivo(fontWeight: FontWeight.w600),
+            displaySmall: GoogleFonts.archivo(fontWeight: FontWeight.w600),
+            headlineLarge: const TextStyle(fontWeight: FontWeight.w400),
+            headlineMedium: const TextStyle(fontWeight: FontWeight.w400),
+            headlineSmall: const TextStyle(fontWeight: FontWeight.w400),
+            titleLarge: const TextStyle(fontWeight: FontWeight.w400),
+            titleMedium: const TextStyle(fontWeight: FontWeight.w400),
+            titleSmall: const TextStyle(fontWeight: FontWeight.w600),
+            bodyLarge: const TextStyle(fontWeight: FontWeight.w400),
+            bodyMedium: const TextStyle(fontWeight: FontWeight.w400),
+            bodySmall: const TextStyle(fontWeight: FontWeight.w400),
+            labelLarge: const TextStyle(fontWeight: FontWeight.w400),
+            labelMedium: const TextStyle(fontWeight: FontWeight.w400),
+            labelSmall: const TextStyle(fontWeight: FontWeight.w400),
+          ),
         ),
         // darkTheme:
         //     MaterialTheme.theme(MaterialTheme.darkScheme().toColorScheme()),
