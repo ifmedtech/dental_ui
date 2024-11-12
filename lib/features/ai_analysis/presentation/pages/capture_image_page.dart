@@ -43,13 +43,15 @@ class _CaptureImagePageState extends State<CaptureImagePage> {
                 if (state is CaptureImageSuccess) {
                   return Image.file(File(state.path));
                 }
-                return UVCCameraView(
-                  cameraController:
-                      context.read<CaptureImageCubit>().getController(),
-                  params: const UVCCameraViewParamsEntity(frameFormat: 0),
-                  width: MediaQuery.sizeOf(context).width,
-                  height: MediaQuery.sizeOf(context).height,
-                );
+                if (state is CameraOpenState) {
+                  return UVCCameraView(
+                    cameraController: state.uvcCameraController,
+                    params: const UVCCameraViewParamsEntity(frameFormat: 0),
+                    width: MediaQuery.sizeOf(context).width,
+                    height: MediaQuery.sizeOf(context).height,
+                  );
+                }
+                return const CircularProgressIndicator.adaptive();
               },
             ),
           ),
@@ -64,7 +66,9 @@ class _CaptureImagePageState extends State<CaptureImagePage> {
                   builder: (context, state) {
                     if (state is! CaptureImageSuccess) {
                       return InkWell(
-                        onTap: () => context.pop(),
+                        onTap: () {
+                          context.read<CaptureImageCubit>().backButton(context);
+                        },
                         child: Container(
                           width: 54,
                           height: 55,
@@ -119,6 +123,7 @@ class _CaptureImagePageState extends State<CaptureImagePage> {
       builder: (context, state) {
         return InkWell(
           onTap: () {
+            print(state);
             if (state is CaptureImageSuccess) {
               context.pop();
               context.goNamed(AppRoute.aiAnalysis,

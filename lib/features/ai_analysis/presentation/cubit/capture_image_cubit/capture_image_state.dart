@@ -9,6 +9,19 @@ final class CaptureImageInitial extends CaptureImageState {
   List<Object> get props => [];
 }
 
+final class CameraOpenState extends CaptureImageState {
+  final UVCCameraController uvcCameraController;
+
+  CameraOpenState({required this.uvcCameraController});
+  @override
+  List<Object> get props => [];
+}
+
+final class CameraClose extends CaptureImageState {
+  @override
+  List<Object> get props => [];
+}
+
 final class CaptureImageSuccess extends CaptureImageState {
   final String path;
 

@@ -1,3 +1,4 @@
+import 'package:dental_ui/camera.dart';
 import 'package:dental_ui/core/router/app_route.dart';
 import 'package:dental_ui/features/ai_analysis/presentation/pages/ai_analysis_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/overview_page.dart';
@@ -12,6 +13,7 @@ import 'package:go_router/go_router.dart';
 
 class Routing {
   static GoRouter goRouter = GoRouter(
+    // initialLocation: '/camera',
     initialLocation: '/${AppRoute.overView}',
     routes: [
       GoRoute(
@@ -25,6 +27,14 @@ class Routing {
         name: AppRoute.signIn,
         pageBuilder: (context, state) => _PageTransition(
           child: const SignInPage(),
+        ),
+      ),
+
+      ///test
+      GoRoute(
+        path: '/camera',
+        pageBuilder: (context, state) => _PageTransition(
+          child: const CameraTest(),
         ),
       ),
       ShellRoute(
