@@ -43,12 +43,30 @@ class DentalAi {
     var input = Float32List(_inputSize * _inputSize * 3);
     var pixelIndex = 0;
 
-    for (var y = 0; y < _inputSize; y++) {
-      for (var x = 0; x < _inputSize; x++) {
-        var pixel = resizedImage.getPixel(x, y);
-        input[pixelIndex++] = img.getRed(pixel).toDouble();
-        input[pixelIndex++] = img.getGreen(pixel).toDouble();
-        input[pixelIndex++] = img.getBlue(pixel).toDouble();
+    // for (var y = 0; y < _inputSize; y++) {
+    //   for (var x = 0; x < _inputSize; x++) {
+    //     var pixel = resizedImage.getPixel(x, y);
+    //     input[pixelIndex++] = img.getRed(pixel).toDouble();
+    //     input[pixelIndex++] = img.getGreen(pixel).toDouble();
+    //     input[pixelIndex++] = img.getBlue(pixel).toDouble();
+    //   }
+    // }
+    for (var i = 0; i < 112; i++) {
+      for (var j = 0; j < 112; j++) {
+        int pixel = image.getPixel(j, i) as int;
+        // Extract RGBA components from pixel value
+        int r = (pixel >> 24) & 0xFF;
+        int g = (pixel >> 16) & 0xFF;
+        int b = (pixel >> 8) & 0xFF;
+
+        // Normalize and store pixel values
+        input[pixelIndex++] = r.toDouble();
+        input[pixelIndex++] = g.toDouble();
+        input[pixelIndex++] = b.toDouble();
+
+        // buffer[pixelIndex++] = (imglib.getRed(pixel) - 128) / 128;
+        // buffer[pixelIndex++] = (imglib.getGreen(pixel) - 128) / 128;
+        // buffer[pixelIndex++] = (imglib.getBlue(pixel) - 128) / 128;
       }
     }
 

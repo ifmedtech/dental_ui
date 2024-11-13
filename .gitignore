@@ -140,3 +140,6 @@ app.*.symbols
 !.vscode/settings.json
 
 /assets/ai_model/
+
+# FVM Version Cache
+.fvm/
