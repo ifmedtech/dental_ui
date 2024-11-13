@@ -1,4 +1,5 @@
 import 'package:dental_ui/core/router/go_router.dart';
+import 'package:dental_ui/core/utils/color_utils.dart';
 import 'package:dental_ui/features/ai_analysis/presentation/cubit/capture_image_cubit/capture_image_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,13 +36,17 @@ class MyApp extends StatelessWidget {
             headlineSmall: GoogleFonts.archivo(fontWeight: FontWeight.w600),
             titleLarge: GoogleFonts.archivo(fontWeight: FontWeight.w600),
             titleMedium: GoogleFonts.archivo(fontWeight: FontWeight.w600),
-            titleSmall: const TextStyle(fontWeight: FontWeight.w600),
+            titleSmall: const TextStyle(fontWeight: FontWeight.w400),
             bodyLarge: const TextStyle(fontWeight: FontWeight.w400),
             bodyMedium: const TextStyle(fontWeight: FontWeight.w400),
             bodySmall: const TextStyle(fontWeight: FontWeight.w400),
             labelLarge: const TextStyle(fontWeight: FontWeight.w400),
             labelMedium: const TextStyle(fontWeight: FontWeight.w400),
             labelSmall: const TextStyle(fontWeight: FontWeight.w400),
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            hintStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
+                color: ColorUtils.get(context).outline.withOpacity(0.6)),
           ),
         ),
         // darkTheme:
