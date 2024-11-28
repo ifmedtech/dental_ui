@@ -28,6 +28,11 @@ class _HomePageState extends State<HomePage> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return CustomScaffold(
       appBar: AppBar(
@@ -54,6 +59,28 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: widget.body,
+      // body: BlocConsumer<PermissionCubit, PermissionState>(
+      //   listener: (context, state) {},
+      //   builder: (context, state) {
+      //     if (state is GetPermission) {
+      //       Future.delayed(Duration(seconds: 1));
+      //       showAdaptiveDialog(
+      //         context: context,
+      //         builder: (context) => AlertDialog.adaptive(
+      //           title: Text("To use app allow permission"),
+      //           actions: [
+      //             FilledButton(
+      //                 onPressed: () {
+      //                   context.read<PermissionCubit>().showPermission();
+      //                 },
+      //                 child: Text("Allow")),
+      //           ],
+      //         ),
+      //       );
+      //     }
+      //     return widget.body;
+      //   },
+      // ),
       bottomNavigationBar: Container(
         color: Colors.transparent,
         padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),

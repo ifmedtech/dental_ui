@@ -1,6 +1,7 @@
 import 'package:dental_ui/camera.dart';
 import 'package:dental_ui/core/router/app_route.dart';
 import 'package:dental_ui/features/ai_analysis/presentation/pages/ai_analysis_page.dart';
+import 'package:dental_ui/features/app/presentation/cubit/permission_cubit/permission_cubit.dart';
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/overview_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/result_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/home_page.dart';
@@ -10,12 +11,13 @@ import 'package:dental_ui/features/authentication/presentation/pages/sign_in_pag
 import 'package:dental_ui/pytorch_test.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class Routing {
   static GoRouter goRouter = GoRouter(
-    initialLocation: '/camera',
-    // initialLocation: '/${AppRoute.overView}',
+    // initialLocation: '/camera',
+    initialLocation: '/${AppRoute.overView}',
     routes: [
       GoRoute(
         path: '/${AppRoute.onBoarding}',
@@ -46,8 +48,9 @@ class Routing {
       ),
       ShellRoute(
         pageBuilder: (context, state, child) => _PageTransition(
-          child: HomePage(
-            body: child,
+          child: BlocProvider(
+            create: (context) => PermissionCubit()..checkPermission(),
+            child: HomePage(body: child),
           ),
         ),
         routes: [
