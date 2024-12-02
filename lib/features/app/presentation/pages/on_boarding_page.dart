@@ -51,7 +51,7 @@ class OnBoardingPage extends StatelessWidget {
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
                             Theme.of(context).colorScheme.background)),
-                    onPressed: () => context.goNamed(AppRoute.signIn),
+                    onPressed: () => context.goNamed(AppRoute.mobileNumber),
                     child: Text(
                       TextConstant.continueT,
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(

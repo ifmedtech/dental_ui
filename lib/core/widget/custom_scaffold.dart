@@ -15,6 +15,7 @@ class CustomScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: appBar,
       body: SafeArea(
         child: body ?? Container(),

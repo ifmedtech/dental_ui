@@ -7,6 +7,8 @@ import 'package:dental_ui/features/app/presentation/pages/bottom_tab/result_page
 import 'package:dental_ui/features/app/presentation/pages/home_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/on_boarding_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/view_analysis_page.dart';
+import 'package:dental_ui/features/authentication/presentation/pages/mobile_number_page.dart';
+import 'package:dental_ui/features/authentication/presentation/pages/otp_verification_page.dart';
 import 'package:dental_ui/features/authentication/presentation/pages/sign_in_page.dart';
 import 'package:dental_ui/pytorch_test.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,7 +19,7 @@ import 'package:go_router/go_router.dart';
 class Routing {
   static GoRouter goRouter = GoRouter(
     // initialLocation: '/camera',
-    initialLocation: '/${AppRoute.overView}',
+    initialLocation: '/${AppRoute.onBoarding}',
     routes: [
       GoRoute(
         path: '/${AppRoute.onBoarding}',
@@ -31,6 +33,22 @@ class Routing {
         pageBuilder: (context, state) => _PageTransition(
           child: const SignInPage(),
         ),
+      ),
+      GoRoute(
+        path: '/${AppRoute.mobileNumber}',
+        name: AppRoute.mobileNumber,
+        pageBuilder: (context, state) => _PageTransition(
+          child: const MobileNumberPage(),
+        ),
+        routes: [
+          GoRoute(
+            path: AppRoute.otpVerification,
+            name: AppRoute.otpVerification,
+            pageBuilder: (context, state) => _PageTransition(
+              child: const OtpVerificationPage(),
+            ),
+          ),
+        ]
       ),
 
       ///test

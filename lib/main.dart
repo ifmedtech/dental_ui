@@ -27,6 +27,23 @@ class MyApp extends StatelessWidget {
             seedColor: const Color(0xFF636AE8),
             primary: const Color(0xFF636AE8),
           ),
+          outlinedButtonTheme: OutlinedButtonThemeData(
+            style: OutlinedButton.styleFrom(
+              side: BorderSide(
+                color: Color(0xFF636AE8),
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10), // Optional: Customize border radius
+              ),
+            ),
+          ),
+          filledButtonTheme: FilledButtonThemeData(
+            style: FilledButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10), // Optional: Customize border radius
+              ),
+            ),
+          ),
           textTheme: GoogleFonts.interTextTheme().copyWith(
             displayLarge: const TextStyle(fontWeight: FontWeight.w400),
             displayMedium: GoogleFonts.archivo(fontWeight: FontWeight.w600),
