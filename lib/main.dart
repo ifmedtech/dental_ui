@@ -1,5 +1,4 @@
 import 'package:dental_ui/core/utils/color_utils.dart';
-import 'package:dental_ui/features/ai_analysis/presentation/cubit/capture_image_cubit/capture_image_cubit.dart';
 import 'package:dental_ui/injection_container.dart' as di;
 import 'package:dental_ui/router/go_router.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => CaptureImageCubit()),
         BlocProvider(
           create: (context) => di.sl<PermissionCubit>()..checkPermission(),
         )

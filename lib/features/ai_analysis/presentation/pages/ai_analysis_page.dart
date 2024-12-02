@@ -33,7 +33,7 @@ class _AiAnalysisPageState extends State<AiAnalysisPage> {
 
   processModel() async {
     var dentalAi = DentalAi(file: File(widget.imagePath));
-    prediction = await dentalAi.classifyImage();
+    // prediction = await dentalAi.classifyImage();
     setState(() {});
   }
 

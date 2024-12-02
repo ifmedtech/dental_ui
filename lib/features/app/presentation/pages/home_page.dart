@@ -1,10 +1,7 @@
 import 'dart:io';
-
-import 'package:dental_ui/camera.dart';
 import 'package:dental_ui/core/utils/color_utils.dart';
 import 'package:dental_ui/core/utils/constant/icon_constant.dart';
 import 'package:dental_ui/core/widget/custom_scaffold.dart';
-import 'package:dental_ui/features/ai_analysis/presentation/cubit/capture_image_cubit/capture_image_cubit.dart';
 import 'package:dental_ui/features/ai_analysis/presentation/pages/capture_image_page.dart';
 import 'package:dental_ui/features/app/presentation/cubit/permission_cubit/permission_cubit.dart';
 import 'package:dental_ui/router/app_route.dart';
@@ -124,12 +121,11 @@ class _HomePageState extends State<HomePage> {
         break;
       case 1:
         {
-          context.read<CaptureImageCubit>().openCamera();
           showModalBottomSheet(
             isScrollControlled: true,
             context: context,
             builder: (context) {
-              return CameraTest();
+              // return CameraTest();
               return const CaptureImagePage();
             },
           );
@@ -150,6 +146,7 @@ class _HomePageState extends State<HomePage> {
   _getPermissionDialog() {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) => AlertDialog.adaptive(
         title: Text("To use app allow permission"),
         actionsAlignment: MainAxisAlignment.spaceEvenly,
@@ -174,6 +171,7 @@ class _HomePageState extends State<HomePage> {
   void _deniedPermissionDialog() {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) => AlertDialog.adaptive(
         title: Text("To use app grant your permission"),
         actionsAlignment: MainAxisAlignment.spaceEvenly,

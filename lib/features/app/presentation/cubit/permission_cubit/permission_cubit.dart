@@ -6,10 +6,10 @@ part 'permission_state.dart';
 class PermissionCubit extends Cubit<PermissionState> {
   PermissionCubit() : super(PermissionInitial());
 
-  checkPermission() {
-    Future.delayed(Duration(milliseconds: 500), () {
+  checkPermission() async {
+    if (await Permission.camera.isGranted) {
       emit(GetPermission());
-    });
+    }
   }
 
   void showPermission() async {
