@@ -6,9 +6,11 @@ import 'package:dental_ui/features/app/presentation/pages/bottom_tab/result_page
 import 'package:dental_ui/features/app/presentation/pages/home_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/on_boarding_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/view_analysis_page.dart';
+import 'package:dental_ui/features/authentication/presentation/cubit/get_otp/get_otp_cubit.dart';
 import 'package:dental_ui/features/authentication/presentation/pages/mobile_number_page.dart';
 import 'package:dental_ui/features/authentication/presentation/pages/otp_verification_page.dart';
 import 'package:dental_ui/features/authentication/presentation/pages/sign_in_page.dart';
+import 'package:dental_ui/injection_container.dart';
 import 'package:dental_ui/pytorch_test.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,21 +38,23 @@ class Routing {
         ),
       ),
       GoRoute(
-        path: '/${AppRoute.mobileNumber}',
-        name: AppRoute.mobileNumber,
-        pageBuilder: (context, state) => _PageTransition(
-          child: const MobileNumberPage(),
-        ),
-        routes: [
-          GoRoute(
-            path: AppRoute.otpVerification,
-            name: AppRoute.otpVerification,
-            pageBuilder: (context, state) => _PageTransition(
-              child: const OtpVerificationPage(),
+          path: '/${AppRoute.mobileNumber}',
+          name: AppRoute.mobileNumber,
+          pageBuilder: (context, state) => _PageTransition(
+                child: BlocProvider(
+                  create: (context) => sl<GetOtpCubit>(),
+                  child: MobileNumberPage(),
+                ),
+              ),
+          routes: [
+            GoRoute(
+              path: AppRoute.otpVerification,
+              name: AppRoute.otpVerification,
+              pageBuilder: (context, state) => _PageTransition(
+                child: const OtpVerificationPage(),
+              ),
             ),
-          ),
-        ]
-      ),
+          ]),
 
       ///test
       GoRoute(

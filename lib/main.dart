@@ -1,11 +1,13 @@
 import 'package:dental_ui/core/utils/color_utils.dart';
 import 'package:dental_ui/features/ai_analysis/presentation/cubit/capture_image_cubit/capture_image_cubit.dart';
+import 'package:dental_ui/injection_container.dart' as di;
 import 'package:dental_ui/router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
+  di.init();
   runApp(const MyApp());
 }
 
@@ -33,14 +35,16 @@ class MyApp extends StatelessWidget {
                 color: Color(0xFF636AE8),
               ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10), // Optional: Customize border radius
+                borderRadius: BorderRadius.circular(
+                    10), // Optional: Customize border radius
               ),
             ),
           ),
           filledButtonTheme: FilledButtonThemeData(
             style: FilledButton.styleFrom(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10), // Optional: Customize border radius
+                borderRadius: BorderRadius.circular(
+                    10), // Optional: Customize border radius
               ),
             ),
           ),
