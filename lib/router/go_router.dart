@@ -1,5 +1,4 @@
 import 'package:dental_ui/camera.dart';
-import 'package:dental_ui/core/router/app_route.dart';
 import 'package:dental_ui/features/ai_analysis/presentation/pages/ai_analysis_page.dart';
 import 'package:dental_ui/features/app/presentation/cubit/permission_cubit/permission_cubit.dart';
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/overview_page.dart';
@@ -15,6 +14,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import 'app_route.dart';
 
 class Routing {
   static GoRouter goRouter = GoRouter(

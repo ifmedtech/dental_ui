@@ -1,6 +1,6 @@
-import 'package:dental_ui/core/router/go_router.dart';
 import 'package:dental_ui/core/utils/color_utils.dart';
 import 'package:dental_ui/features/ai_analysis/presentation/cubit/capture_image_cubit/capture_image_cubit.dart';
+import 'package:dental_ui/router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';

@@ -1,8 +1,8 @@
-import 'package:dental_ui/core/router/app_route.dart';
 import 'package:dental_ui/core/utils/color_utils.dart';
 import 'package:dental_ui/core/utils/constant/icon_constant.dart';
 import 'package:dental_ui/core/utils/constant/image_constant.dart';
 import 'package:dental_ui/core/utils/constant/text_constant.dart';
+import 'package:dental_ui/router/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
