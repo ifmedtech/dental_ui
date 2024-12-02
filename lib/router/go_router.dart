@@ -22,7 +22,7 @@ import 'app_route.dart';
 class Routing {
   static GoRouter goRouter = GoRouter(
     // initialLocation: '/camera',
-    initialLocation: '/${AppRoute.onBoarding}',
+    initialLocation: '/${AppRoute.overView}',
     routes: [
       GoRoute(
         path: '/${AppRoute.onBoarding}',
@@ -71,10 +71,8 @@ class Routing {
       ),
       ShellRoute(
         pageBuilder: (context, state, child) => _PageTransition(
-          child: BlocProvider(
-            create: (context) => PermissionCubit()..checkPermission(),
-            child: HomePage(body: child),
-          ),
+          child: HomePage(body: child),
+
         ),
         routes: [
           GoRoute(

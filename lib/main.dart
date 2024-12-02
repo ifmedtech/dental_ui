@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'features/app/presentation/cubit/permission_cubit/permission_cubit.dart';
+
 void main() {
   di.init();
   runApp(const MyApp());
@@ -19,6 +21,9 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => CaptureImageCubit()),
+        BlocProvider(
+          create: (context) => di.sl<PermissionCubit>()..checkPermission(),
+        )
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

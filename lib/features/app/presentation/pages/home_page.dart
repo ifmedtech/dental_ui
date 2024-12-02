@@ -1,13 +1,18 @@
+import 'dart:io';
+
+import 'package:dental_ui/camera.dart';
 import 'package:dental_ui/core/utils/color_utils.dart';
 import 'package:dental_ui/core/utils/constant/icon_constant.dart';
 import 'package:dental_ui/core/widget/custom_scaffold.dart';
 import 'package:dental_ui/features/ai_analysis/presentation/cubit/capture_image_cubit/capture_image_cubit.dart';
 import 'package:dental_ui/features/ai_analysis/presentation/pages/capture_image_page.dart';
+import 'package:dental_ui/features/app/presentation/cubit/permission_cubit/permission_cubit.dart';
 import 'package:dental_ui/router/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.body});
@@ -58,29 +63,16 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: widget.body,
-      // body: BlocConsumer<PermissionCubit, PermissionState>(
-      //   listener: (context, state) {},
-      //   builder: (context, state) {
-      //     if (state is GetPermission) {
-      //       Future.delayed(Duration(seconds: 1));
-      //       showAdaptiveDialog(
-      //         context: context,
-      //         builder: (context) => AlertDialog.adaptive(
-      //           title: Text("To use app allow permission"),
-      //           actions: [
-      //             FilledButton(
-      //                 onPressed: () {
-      //                   context.read<PermissionCubit>().showPermission();
-      //                 },
-      //                 child: Text("Allow")),
-      //           ],
-      //         ),
-      //       );
-      //     }
-      //     return widget.body;
-      //   },
-      // ),
+      body: BlocListener<PermissionCubit, PermissionState>(
+        listener: (context, state) {
+          if (state is GetPermission) {
+            _getPermissionDialog();
+          } else if (state is DeniedPermission) {
+            _deniedPermissionDialog();
+          }
+        },
+        child: widget.body,
+      ),
       bottomNavigationBar: Container(
         color: Colors.transparent,
         padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
@@ -137,6 +129,7 @@ class _HomePageState extends State<HomePage> {
             isScrollControlled: true,
             context: context,
             builder: (context) {
+              return CameraTest();
               return const CaptureImagePage();
             },
           );
@@ -152,6 +145,57 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       selectedTab = value;
     });
+  }
+
+  _getPermissionDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog.adaptive(
+        title: Text("To use app allow permission"),
+        actionsAlignment: MainAxisAlignment.spaceEvenly,
+        actions: [
+          OutlinedButton(
+              onPressed: () {
+                exit(0);
+              },
+              child: Text("Close")),
+          FilledButton(
+            onPressed: () {
+              Navigator.of(context, rootNavigator: true).pop();
+              context.read<PermissionCubit>().showPermission();
+            },
+            child: Text("Allow"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _deniedPermissionDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog.adaptive(
+        title: Text("To use app grant your permission"),
+        actionsAlignment: MainAxisAlignment.spaceEvenly,
+        actions: [
+          OutlinedButton(
+              onPressed: () {
+                exit(0);
+              },
+              child: Text("Exit")),
+          FilledButton(
+            onPressed: () {
+              openAppSettings();
+              context.pop();
+              Future.delayed(Duration(milliseconds: 100), () {
+                context.read<PermissionCubit>().showPermission();
+              });
+            },
+            child: Text("Setting"),
+          ),
+        ],
+      ),
+    );
   }
 }
 
