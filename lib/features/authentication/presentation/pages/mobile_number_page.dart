@@ -27,6 +27,8 @@ class _MobileNumberPageState extends State<MobileNumberPage> {
     super.dispose();
   }
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<GetOtpCubit, GetOtpState>(
@@ -42,62 +44,78 @@ class _MobileNumberPageState extends State<MobileNumberPage> {
         }
       },
       child: CustomScaffold(
-        body: Container(
-          padding: EdgeInsets.all(15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                children: [
-                  SvgPicture.asset(IconConstant.appIcon),
-                  SizedBox(height: 16),
-                  Text(
-                    TextConstant.welcome,
-                    style: TextUtils.get(context).displaySmall,
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Text(
-                    'Enter Your Mobile number',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  Text("We will send you a Confirmation Code"),
-                  SizedBox(height: 30),
-                  Container(
-                    // width: 200,
-                    // decoration: BoxDecoration(
-                    //   border: Border(
-                    //     bottom: BorderSide(
-                    //       color: ColorUtils.get(context).primary,
-                    //     ),
-                    //   ),
-                    // ),
-                    margin: EdgeInsets.symmetric(horizontal: 30),
-                    child: TextFormField(
-                      controller: _mobileNumber,
-                      textAlign: TextAlign.center,
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                      ),
-                      keyboardType: TextInputType.number,
+        body: Form(
+          key: _formKey,
+          child: Container(
+            padding: EdgeInsets.all(15),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: [
+                    SvgPicture.asset(IconConstant.appIcon),
+                    SizedBox(height: 16),
+                    Text(
+                      TextConstant.welcome,
+                      style: TextUtils.get(context).displaySmall,
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 42),
-              Container(
-                width: double.maxFinite,
-                margin: EdgeInsets.symmetric(horizontal: 50),
-                child: FilledButton(
-                  onPressed: () {
-                    context.read<GetOtpCubit>().call(_mobileNumber.text);
-                  },
-                  child: Text("Get OTP"),
+                  ],
                 ),
-              )
-            ],
+                Column(
+                  children: [
+                    Text(
+                      'Enter Your Mobile number',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    Text("We will send you a Confirmation Code"),
+                    SizedBox(height: 30),
+                    Container(
+                      // width: 200,
+                      // decoration: BoxDecoration(
+                      //   border: Border(
+                      //     bottom: BorderSide(
+                      //       color: ColorUtils.get(context).primary,
+                      //     ),
+                      //   ),
+                      // ),
+                      margin: EdgeInsets.symmetric(horizontal: 30),
+                      child: TextFormField(
+                        controller: _mobileNumber,
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                        ),
+                        keyboardType: TextInputType.number,
+                        validator: (value) {
+                          String _pattern = r'(^(?:[+0]9)?[0-9]{10,10}$)';
+                          RegExp regExp = RegExp(_pattern);
+
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          } else if (!regExp.hasMatch(value)) {
+                            return 'Please enter valid mobile number';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 42),
+                Container(
+                  width: double.maxFinite,
+                  margin: EdgeInsets.symmetric(horizontal: 50),
+                  child: FilledButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        context.read<GetOtpCubit>().call(_mobileNumber.text);
+                      }
+                    },
+                    child: Text("Get OTP"),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
