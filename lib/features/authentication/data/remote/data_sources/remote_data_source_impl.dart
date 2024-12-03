@@ -26,7 +26,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       },
     );
     if (response.statusCode! < 300) {
-      Fluttertoast.showToast(msg: "OTP - ${response.data['otp']}");
+      Fluttertoast.showToast(msg: "OTP - ${response.data['token']}");
       return true;
     }
     return false;

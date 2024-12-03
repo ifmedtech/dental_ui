@@ -33,7 +33,7 @@ class _AiAnalysisPageState extends State<AiAnalysisPage> {
 
   processModel() async {
     var dentalAi = DentalAi(file: File(widget.imagePath));
-    // prediction = await dentalAi.classifyImage();
+    prediction = await dentalAi.classifyImage();
     setState(() {});
   }
 
@@ -52,169 +52,175 @@ class _AiAnalysisPageState extends State<AiAnalysisPage> {
   Widget build(BuildContext context) {
     return Padding(
       padding: ResponsivePadding.getPadding(context),
-      child: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            expandedHeight: 800,
-            floating: true,
-            snap: true,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 3),
-                  const Text(
-                    "16/10/2024 | 12:35",
-                  ),
-                  const SizedBox(height: 5),
-                  SizedBox(
-                    height: 300,
-                    width: double.maxFinite,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.file(
-                        File(imagePath),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  FilledButton(
-                    onPressed: () => picturePicker(),
-                    child: const Text("Pick Image"),
-                  ),
-                  SizedBox(
-                    child: Column(
+      child: prediction == null
+          ? Center(child: CircularProgressIndicator())
+          : CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  expandedHeight: 800,
+                  floating: true,
+                  snap: true,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          margin: const EdgeInsets.only(top: 20, bottom: 10),
-                          decoration: BoxDecoration(
-                            // borderRadius: BorderRadius.circular(10),
-                            border: Border.all(width: 0.05),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      const SizedBox(height: 50),
-                                      Text(
-                                        "Analysis Results",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headlineSmall,
-                                      ),
-                                      const SizedBox(width: 5),
-                                      SvgPicture.asset(
-                                          IconConstant.questionMarkIcon),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 5),
-                              // Center for aligning the second row of containers
-                              Container(
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  color: ColorUtils.resultsLow,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(20.0),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "$prediction Found",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: Container(
-                                              height: 5,
-                                              // Line thickness
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .error, // red
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Container(
-                                              height: 5,
-                                              // Line thickness
-                                              color: Colors.green, //green
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
+                        const SizedBox(height: 3),
+                        const Text(
+                          "16/10/2024 | 12:35",
+                        ),
+                        const SizedBox(height: 5),
+                        SizedBox(
+                          height: 300,
+                          width: double.maxFinite,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.file(
+                              File(imagePath),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        // Vertical space between the Row and the buttons
-                        Center(
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            // Minimize the Row's width to fit its children
+                        FilledButton(
+                          onPressed: () => picturePicker(),
+                          child: const Text("Pick Image"),
+                        ),
+                        SizedBox(
+                          child: Column(
                             children: [
-                              FilledButton(
-                                onPressed: () =>
-                                    _saveResultBottomSheet(context),
-                                style: ButtonStyle(
-                                  shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          10), // Rounded corners
-                                    ),
-                                  ),
+                              Container(
+                                padding: const EdgeInsets.all(8),
+                                margin:
+                                    const EdgeInsets.only(top: 20, bottom: 10),
+                                decoration: BoxDecoration(
+                                  // borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(width: 0.05),
                                 ),
-                                child: Row(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SvgPicture.asset(
-                                        IconConstant.saveResultsIcon),
-                                    // The icon
-                                    const SizedBox(width: 5),
-                                    // Space between the icon and text
-                                    const Text('Save Results'),
-                                    // The text
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            const SizedBox(height: 50),
+                                            Text(
+                                              "Analysis Results",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headlineSmall,
+                                            ),
+                                            const SizedBox(width: 5),
+                                            SvgPicture.asset(
+                                                IconConstant.questionMarkIcon),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5),
+                                    // Center for aligning the second row of containers
+                                    Container(
+                                      height: 80,
+                                      decoration: BoxDecoration(
+                                        color: ColorUtils.resultsLow,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(20.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "$prediction Found",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleSmall,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Container(
+                                                    height: 5,
+                                                    // Line thickness
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .error, // red
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  child: Container(
+                                                    height: 5,
+                                                    // Line thickness
+                                                    color: Colors.green, //green
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
-                              const SizedBox(width: 10),
-                              // Horizontal space between the buttons
-                              FilledButton(
-                                onPressed: () {},
-                                style: ButtonStyle(
-                                  shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          10), // Rounded corners
-                                    ),
-                                  ),
-                                ),
+                              const SizedBox(height: 10),
+                              // Vertical space between the Row and the buttons
+                              Center(
                                 child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  // Minimize the Row's width to fit its children
                                   children: [
-                                    SvgPicture.asset(
-                                        IconConstant.retakePhotoIcon),
-                                    // The icon
-                                    const SizedBox(width: 5),
-                                    // Space between the icon and text
-                                    const Text('Retake Photo'),
-                                    // The text
+                                    FilledButton(
+                                      onPressed: () =>
+                                          _saveResultBottomSheet(context),
+                                      style: ButtonStyle(
+                                        shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                10), // Rounded corners
+                                          ),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          SvgPicture.asset(
+                                              IconConstant.saveResultsIcon),
+                                          // The icon
+                                          const SizedBox(width: 5),
+                                          // Space between the icon and text
+                                          const Text('Save Results'),
+                                          // The text
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    // Horizontal space between the buttons
+                                    FilledButton(
+                                      onPressed: () {},
+                                      style: ButtonStyle(
+                                        shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                10), // Rounded corners
+                                          ),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          SvgPicture.asset(
+                                              IconConstant.retakePhotoIcon),
+                                          // The icon
+                                          const SizedBox(width: 5),
+                                          // Space between the icon and text
+                                          const Text('Retake Photo'),
+                                          // The text
+                                        ],
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -224,12 +230,9 @@ class _AiAnalysisPageState extends State<AiAnalysisPage> {
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 }
