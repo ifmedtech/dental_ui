@@ -20,7 +20,7 @@ import 'app_route.dart';
 
 class Routing {
   static GoRouter goRouter = GoRouter(
-    initialLocation: '/camera',
+    initialLocation: '/pytorch',
     // initialLocation: '/${AppRoute.onBoarding}',
     routes: [
       GoRoute(

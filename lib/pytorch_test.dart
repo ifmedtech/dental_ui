@@ -51,7 +51,7 @@ class _PytorchTestState extends State<PytorchTest> {
   void _predict() async {
     ClassificationModel classificationModel =
         await PytorchLite.loadClassificationModel(
-            "assets/ai_model/model.pt", 224, 224, 2,
+            "assets/ai_model/Dental_pytorch_03_12.pt", 224, 224, 3,
             labelPath: "assets/labels/dental_labels.txt");
     String imagePrediction = await classificationModel
         .getImagePrediction(await File(image!.path).readAsBytes());
