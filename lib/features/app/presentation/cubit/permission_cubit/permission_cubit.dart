@@ -7,7 +7,7 @@ class PermissionCubit extends Cubit<PermissionState> {
   PermissionCubit() : super(PermissionInitial());
 
   checkPermission() async {
-    if (await Permission.camera.isGranted) {
+    if (!(await Permission.camera.isGranted)) {
       emit(GetPermission());
     }
   }
@@ -23,8 +23,7 @@ class PermissionCubit extends Cubit<PermissionState> {
     //     statuses[Permission.camera]!.isPermanentlyDenied ||
     //     statuses[Permission.manageExternalStorage]!.isPermanentlyDenied ||
     //     statuses[Permission.audio]!.isPermanentlyDenied) {
-
-    if (statuses[Permission.camera]!.isGranted ||
+      if (statuses[Permission.camera]!.isGranted ||
         statuses[Permission.camera]!.isProvisional) {
       emit(SuccessPermission());
     } else {

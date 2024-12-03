@@ -104,24 +104,28 @@ class _CaptureImagePageState extends State<CaptureImagePage> {
                         : SvgPicture.asset(IconConstant.camera),
                   ),
                 ),
-                if (imagePath != null)
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        imagePath = null;
-                      });
-                    },
-                    child: Container(
-                      width: 54,
-                      height: 55,
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: ColorUtils.get(context).surface,
-                        shape: BoxShape.circle,
+                imagePath != null
+                    ? InkWell(
+                        onTap: () {
+                          setState(() {
+                            imagePath = null;
+                          });
+                        },
+                        child: Container(
+                          width: 54,
+                          height: 55,
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: ColorUtils.get(context).surface,
+                            shape: BoxShape.circle,
+                          ),
+                          child: SvgPicture.asset(IconConstant.retake),
+                        ),
+                      )
+                    : SizedBox(
+                        width: 54,
+                        height: 55,
                       ),
-                      child: SvgPicture.asset(IconConstant.retake),
-                    ),
-                  ),
               ],
             ),
           ),

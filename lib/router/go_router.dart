@@ -1,6 +1,5 @@
 import 'package:dental_ui/camera.dart';
 import 'package:dental_ui/features/ai_analysis/presentation/pages/ai_analysis_page.dart';
-import 'package:dental_ui/features/app/presentation/cubit/permission_cubit/permission_cubit.dart';
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/overview_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/bottom_tab/result_page.dart';
 import 'package:dental_ui/features/app/presentation/pages/home_page.dart';
@@ -21,8 +20,8 @@ import 'app_route.dart';
 
 class Routing {
   static GoRouter goRouter = GoRouter(
-    // initialLocation: '/camera',
-    initialLocation: '/${AppRoute.overView}',
+    initialLocation: '/camera',
+    // initialLocation: '/${AppRoute.onBoarding}',
     routes: [
       GoRoute(
         path: '/${AppRoute.onBoarding}',
@@ -72,7 +71,6 @@ class Routing {
       ShellRoute(
         pageBuilder: (context, state, child) => _PageTransition(
           child: HomePage(body: child),
-
         ),
         routes: [
           GoRoute(
