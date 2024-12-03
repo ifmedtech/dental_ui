@@ -37,7 +37,8 @@ class _MobileNumberPageState extends State<MobileNumberPage> {
           LoadingDialog.showOnPageLoading(context);
         } else if (state is GetOtpSuccess) {
           LoadingDialog.hideOnPageLoading(context);
-          context.goNamed(AppRoute.otpVerification);
+          context.goNamed(AppRoute.otpVerification,
+              pathParameters: {"mobilNumber": state.mobileNumber});
         } else if (state is GetOtpError) {
           ErrorMessage.scaffold(context, state.errorMessage);
           LoadingDialog.hideOnPageLoading(context);

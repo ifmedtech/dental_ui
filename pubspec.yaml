@@ -30,7 +30,7 @@ dependencies:
   pinput: ^5.0.0
   dio: ^5.7.0
   get_it: ^8.0.2
-  fluttertoast: ^8.2.8
+  fluttertoast: ^8.2.0
 
 
 

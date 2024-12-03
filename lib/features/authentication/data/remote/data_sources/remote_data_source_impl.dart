@@ -9,14 +9,26 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
     final response = await dioInstance().get("${Endpoint.getOTP}$number");
     //TODO : form dummy otp
     if (response.statusCode! < 300) {
-      Fluttertoast.showToast(msg: "OTP - ${response.data['otp']}");
+      Fluttertoast.showToast(
+        msg: "OTP - ${response.data['otp']}",
+      );
     }
     return response.statusCode! < 300;
   }
 
   @override
-  Future<bool> verifyOTP(String mobileNumber, String otp) {
-    // TODO: implement verifyOTP
-    throw UnimplementedError();
+  Future<bool> verifyOTP(String mobileNumber, String otp) async {
+    final response = await dioInstance().post(
+      Endpoint.verifyOTP,
+      data: {
+        "phone_number": mobileNumber,
+        "otp": otp,
+      },
+    );
+    if (response.statusCode! < 300) {
+      Fluttertoast.showToast(msg: "OTP - ${response.data['otp']}");
+      return true;
+    }
+    return false;
   }
 }

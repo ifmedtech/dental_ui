@@ -81,6 +81,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                 margin: EdgeInsets.symmetric(vertical: 40),
                 child: Pinput(
                   length: 6,
+                  controller: _otpController,
                   defaultPinTheme: PinTheme(
                     width: 40,
                     height: 40,
