@@ -20,8 +20,7 @@ import 'app_route.dart';
 
 class Routing {
   static GoRouter goRouter = GoRouter(
-    initialLocation: '/pytorch',
-    // initialLocation: '/${AppRoute.onBoarding}',
+    initialLocation: '/${AppRoute.onBoarding}',
     routes: [
       GoRoute(
         path: '/${AppRoute.onBoarding}',

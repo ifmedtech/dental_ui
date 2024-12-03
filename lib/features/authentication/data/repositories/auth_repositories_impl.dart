@@ -9,4 +9,8 @@ class AuthRepositoriesImpl extends AuthRepositories {
   @override
   Future<bool> getOTP(String mobileNumber) =>
       authRemoteDataSource.getOTP(mobileNumber);
+
+  @override
+  Future<bool> verifyOTP(String mobileNumber, String otp) =>
+      authRemoteDataSource.verifyOTP(mobileNumber, otp);
 }
